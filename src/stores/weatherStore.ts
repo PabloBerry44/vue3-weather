@@ -9,7 +9,7 @@ interface Product {
 }
 
 interface CartDetails {
-    totalAmount: number
+    searchValue: string
     products: Product[]
     shipmentDetails: {
         company: boolean
@@ -38,14 +38,14 @@ interface CartDetails {
 export const useWeatherStore = defineStore('weather', {
     state: () => {
         return {
-            totalAmount: 0,
+            searchValue: '',
             products: [],
             shipmentDetails: {},
         } as unknown as CartDetails
     },
     actions: {
-        async getForecast() {
-            const response = await fetch(`/.netlify/functions/forecast`)
+        async getForecast(city: string) {
+            const response = await fetch(`/.netlify/functions/forecast?city=${city}`)
             const data = await response.json()
             console.log(data)
         },
