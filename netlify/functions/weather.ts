@@ -5,7 +5,7 @@ exports.handler = async function (event, context, callback) {
     const city = event.queryStringParameters.city
     const apiKey = process.env.weatherKEY
 
-    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
 
     try {
         const { data } = await axios.get(apiUrl)
