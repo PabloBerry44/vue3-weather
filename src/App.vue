@@ -13,7 +13,7 @@ const storeWeather = useWeatherStore()
                 >{{ storeWeather.forecast.city.name }}, {{ storeWeather.forecast.city.country }}</span
             >
             <span class="temp">{{ Math.round(storeWeather.weather.main.temp) }}</span>
-            <img :src="`/src/assets/weather-icons/${storeWeather.weather.weather[0].icon}.svg`" alt="asd" />
+            <img :src="`./src/assets/weather-icons/${storeWeather.weather.weather[0].icon}.svg`" alt="asd" />
         </div>
     </main>
 </template>
