@@ -14,7 +14,7 @@ const storeWeather = useWeatherStore()
             >
 
             <div class="container">
-                <img :src="`src/assets/weather-icons/${storeWeather.weather.weather[0].icon}.png`" alt="asd" />
+                <img :src="`/assets/weather-icons/${storeWeather.weather.weather[0].icon}.png`" alt="asd" />
                 <span class="temp">{{ Math.round(storeWeather.weather.main.temp) }}</span>
             </div>
         </div>
