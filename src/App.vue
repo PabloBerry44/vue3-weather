@@ -12,8 +12,11 @@ const storeWeather = useWeatherStore()
             <span class="location"
                 >{{ storeWeather.forecast.city.name }}, {{ storeWeather.forecast.city.country }}</span
             >
-            <span class="temp">{{ Math.round(storeWeather.weather.main.temp) }}</span>
-            <img :src="`./src/assets/weather-icons/${storeWeather.weather.weather[0].icon}.svg`" alt="asd" />
+
+            <div class="container">
+                <img :src="`./src/assets/weather-icons/${storeWeather.weather.weather[0].icon}.png`" alt="asd" />
+                <span class="temp">{{ Math.round(storeWeather.weather.main.temp) }}</span>
+            </div>
         </div>
     </main>
 </template>
@@ -26,17 +29,28 @@ main {
         flex-direction: column;
         align-items: center;
 
-        .temp {
-            font-size: 100px;
-            font-weight: 300;
+        .container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            width: 100%;
+            height: 120px;
+            margin-top: 30px;
 
-            &::after {
-                content: '°';
-                position: absolute;
+            .temp {
+                font-size: 100px;
+                font-weight: 300;
+
+                &::after {
+                    content: '°';
+                    position: absolute;
+                }
             }
-        }
-        img {
-            width: 150px;
+            img {
+                width: 128px;
+            }
         }
     }
 }

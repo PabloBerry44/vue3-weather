@@ -15,7 +15,7 @@ export const useWeatherStore = defineStore('weather', {
                 },
                 weather: [
                     {
-                        icon: '01d',
+                        icon: '04d',
                     },
                 ],
             },
