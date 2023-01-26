@@ -3,7 +3,7 @@ import { useWeatherStore } from '../stores/weatherStore'
 import { ref } from 'vue'
 const storeWeather = useWeatherStore()
 
-storeWeather.fetchData('Hurghada')
+storeWeather.fetchData('Punta Cana')
 
 const searchValue = ref('')
 </script>
