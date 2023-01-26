@@ -18,7 +18,8 @@
 #app {
     max-width: 1000px;
     margin-inline: auto;
-    border-right: 1px solid rgb(238, 238, 238);
-    border-left: 1px solid rgb(238, 238, 238);
+    /* border-right: 1px solid rgb(238, 238, 238);
+    border-left: 1px solid rgb(238, 238, 238); */
     min-height: 100vh;
+    background: rgb(21, 146, 255); 
 }

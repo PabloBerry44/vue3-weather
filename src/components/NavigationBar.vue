@@ -3,7 +3,7 @@ import { useWeatherStore } from '../stores/weatherStore'
 import { ref } from 'vue'
 const storeWeather = useWeatherStore()
 
-const searchValue = ref('Prague')
+const searchValue = ref('Hurghada')
 </script>
 <template>
     <header>
@@ -22,7 +22,7 @@ header {
     input {
         font-size: 18px;
         padding: 15px;
-        background: #f0f0f0;
+        background: white;
         border-radius: 5px;
         width: 100%;
         top: 0;
@@ -32,7 +32,7 @@ header {
     form {
         display: flex;
         align-items: center;
-        max-width: 400px;
+        max-width: 480px;
         width: 100%;
         border-radius: 5px;
         background: white;
