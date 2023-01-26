@@ -81,7 +81,7 @@ const storeWeather = useWeatherStore()
             </div>
         </div>
     </main>
-    <img src="@/assets/weatherIcons/02d.webp" alt="" />
+    <!-- <img src="@/assets/weatherIcons/02d.webp" alt="" /> -->
 </template>
 
 <style scoped lang="scss">
