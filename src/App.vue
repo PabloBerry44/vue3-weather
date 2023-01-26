@@ -98,7 +98,7 @@ main {
         min-width: 300px;
         width: 100%;
         max-width: 480px;
-        background: white;
+        background: rgba(255, 255, 255, 0.2);
         padding: 20px 0;
         justify-content: space-evenly;
         border-radius: 5px;
@@ -140,7 +140,7 @@ main {
         gap: 15px;
         width: 100%;
         max-width: 480px;
-        background: white;
+        background: rgba(255, 255, 255, 0.2);
         padding: 20px;
         border-radius: 5px;
 
@@ -159,10 +159,14 @@ main {
 
                 img {
                     width: 30px;
+
+                    &:deep(svg) {
+                        fill: white;
+                    }
                 }
                 .title {
                     font-size: 15px;
-                    color: rgb(112, 112, 112);
+                    color: rgb(235, 235, 235);
                 }
             }
 
@@ -175,7 +179,7 @@ main {
     .forecast {
         width: 100%;
         max-width: 480px;
-        background: white;
+        background: rgba(255, 255, 255, 0.2);
         border-radius: 5px;
         display: flex;
         flex-flow: row nowrap;
@@ -183,6 +187,13 @@ main {
         padding: 20px;
         overflow-x: scroll;
         position: relative;
+
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
+        scrollbar-width: none; /* Firefox */
+
+        &::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
 
         .hour--details {
             display: flex;

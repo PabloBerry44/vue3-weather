@@ -12,6 +12,7 @@
     outline: 0;
     border: 0;
     margin: 0;
+    color: white;
 }
 
 
@@ -21,5 +22,5 @@
     /* border-right: 1px solid rgb(238, 238, 238);
     border-left: 1px solid rgb(238, 238, 238); */
     min-height: 100vh;
-    background: rgb(21, 146, 255); 
+    background: rgb(35, 0, 65); 
 }
