@@ -20,7 +20,7 @@ const storeWeather = useWeatherStore()
             </span>
 
             <div class="container">
-                <img :src="`./src/assets/weather-icons/${storeWeather.weather.weather[0].icon}.png`" alt="asd" />
+                <img :src="`./assets/weather-icons/${storeWeather.weather.weather[0].icon}.png`" alt="asd" />
                 <span class="temp">{{ Math.round(storeWeather.weather.main.temp) }}</span>
             </div>
             <span class="description">{{ storeWeather.weather.weather[0].description }}</span>
@@ -76,7 +76,7 @@ const storeWeather = useWeatherStore()
         <div class="forecast">
             <div class="hour--details" v-for="(detail, index) in storeWeather.forecast.list.slice(0, 10)" :key="index">
                 {{ computedHour(detail.dt) }}
-                <img :src="`./src/assets/weather-icons/${detail.weather[0].icon}.png`" alt="asd" />
+                <img :src="`./assets/weather-icons/${detail.weather[0].icon}.png`" alt="asd" />
                 {{ Math.round(detail.main.temp) }}°
             </div>
         </div>
