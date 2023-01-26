@@ -3,11 +3,11 @@ import { useWeatherStore } from '../stores/weatherStore'
 import { ref } from 'vue'
 const storeWeather = useWeatherStore()
 
-const searchValue = ref('Hurghada')
+const searchValue = ref('')
 </script>
 <template>
     <header>
-        <form @submit.prevent="storeWeather.fetchData(searchValue)">
+        <form @submit.prevent="storeWeather.fetchData(searchValue), (searchValue = '')">
             <input type="text" v-model="searchValue" placeholder="Search for city" />
         </form>
     </header>

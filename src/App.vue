@@ -75,9 +75,9 @@ const storeWeather = useWeatherStore()
         </div>
         <div class="forecast">
             <div class="hour--details" v-for="(detail, index) in storeWeather.forecast.list.slice(0, 10)" :key="index">
-                {{ computedHour(detail.dt) }}
+                <span class="hour"> {{ computedHour(detail.dt) }}</span>
                 <img :src="'/weatherIcons/' + detail.weather[0].icon + '.webp'" alt="asd" />
-                {{ Math.round(detail.main.temp) }}°
+                <span class="temp"> {{ Math.round(detail.main.temp) }} </span>
             </div>
         </div>
     </main>
@@ -183,14 +183,22 @@ main {
         gap: 30px;
         padding: 20px;
         overflow-x: scroll;
+        position: relative;
 
         .hour--details {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
+            gap: 10px;
+
             img {
                 width: 32px;
+            }
+
+            .temp::after {
+                content: '°';
+                position: absolute;
             }
         }
     }
