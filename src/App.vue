@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useWeatherStore } from '../src/stores/weatherStore'
 import NavigationBar from './components/NavigationBar.vue'
-// import { computed } from 'vue'
 
 const computedHour = (unix: number) => {
     const hour = (new Date(unix * 1000).getHours() - 1).toString()
