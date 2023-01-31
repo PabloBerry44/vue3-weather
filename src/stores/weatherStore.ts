@@ -1,3 +1,4 @@
+import router from '@/router'
 import { defineStore } from 'pinia'
 
 interface Wind {
@@ -98,6 +99,8 @@ export const useWeatherStore = defineStore('weather', {
             const weather = await weatherResponse.json()
             this.weather = weather
             console.log(weather)
+
+            router.push(city)
         },
     },
 })

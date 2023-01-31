@@ -1,13 +1,19 @@
 <script setup lang="ts">
 import { useWeatherStore } from '../stores/weatherStore'
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 const storeWeather = useWeatherStore()
 
 async function getCity() {
-    const response = await fetch('https://ipwho.is/')
-    const data = await response.json()
+    const route = useRoute()
+    if (route.params.city) {
+        storeWeather.fetchData(String(route.params.city))
+    } else {
+        const response = await fetch('https://ipwho.is/')
+        const data = await response.json()
 
-    storeWeather.fetchData(data.city)
+        storeWeather.fetchData(data.city)
+    }
 }
 
 getCity()
