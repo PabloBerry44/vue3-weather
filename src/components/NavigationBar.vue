@@ -2,10 +2,12 @@
 import { useWeatherStore } from '../stores/weatherStore'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { watch } from 'vue'
 const storeWeather = useWeatherStore()
 
+const route = useRoute()
+
 async function getCity() {
-    const route = useRoute()
     if (route.params.city) {
         storeWeather.fetchData(String(route.params.city))
     } else {
@@ -17,6 +19,13 @@ async function getCity() {
 }
 
 getCity()
+
+watch(
+    () => route.fullPath,
+    async () => {
+        getCity()
+    },
+)
 
 const searchValue = ref('')
 </script>
