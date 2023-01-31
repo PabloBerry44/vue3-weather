@@ -12,7 +12,7 @@ const storeWeather = useWeatherStore()
 
 <template>
     <NavigationBar />
-    <main>
+    <main v-if="storeWeather.loaded">
         <div class="main-content">
             <span class="location"
                 >{{ storeWeather.forecast.city.name }}, {{ storeWeather.forecast.city.country }}
