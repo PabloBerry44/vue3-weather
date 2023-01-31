@@ -46,6 +46,7 @@ interface Forecast {
 export const useWeatherStore = defineStore('weather', {
     state: () => {
         return {
+            loaded: false,
             forecast: {
                 city: {
                     name: 'Prague',
@@ -90,6 +91,7 @@ export const useWeatherStore = defineStore('weather', {
     },
     actions: {
         async fetchData(city: string) {
+            this.loaded = false
             const forecastResponse = await fetch(`/.netlify/functions/forecast?city=${city}`)
             const forecast = await forecastResponse.json()
             this.forecast = forecast
@@ -101,6 +103,7 @@ export const useWeatherStore = defineStore('weather', {
             console.log(weather)
 
             router.push(city)
+            this.loaded = true
         },
     },
 })
