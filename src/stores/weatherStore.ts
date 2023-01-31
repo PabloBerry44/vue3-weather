@@ -105,6 +105,17 @@ export const useWeatherStore = defineStore('weather', {
 
             router.push(city.replace(/ /g, '-'))
             this.loaded = true
+
+            const cityArray = city.split(' ')
+
+            let title = ''
+
+            for (let word of cityArray) {
+                word = word[0].toUpperCase() + word.slice(1)
+                title += word + ' '
+            }
+
+            document.title = title
         },
     },
 })
