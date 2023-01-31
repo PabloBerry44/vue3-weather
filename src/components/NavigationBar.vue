@@ -25,11 +25,12 @@ header {
         font-size: 18px;
         padding: 15px;
         background: white;
-        border-radius: 5px;
+        border-radius: 10px;
         width: 100%;
         top: 0;
         left: 0;
         color: initial;
+        background: rgb(241, 241, 241);
     }
 
     form {
@@ -37,7 +38,7 @@ header {
         align-items: center;
         max-width: 480px;
         width: 100%;
-        border-radius: 5px;
+        border-radius: 10px;
         background: white;
         position: relative;
         max-height: 52px;

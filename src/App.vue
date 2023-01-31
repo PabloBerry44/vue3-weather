@@ -84,12 +84,17 @@ const storeWeather = useWeatherStore()
 
 <style scoped lang="scss">
 main {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
     padding: 10px;
     min-width: 320px;
-    justify-content: space-between;
-    flex-flow: row wrap;
+    width: 100%;
     gap: 20px;
+
+    @media (min-width: 800px) {
+        grid-template-columns: 1fr 1fr;
+    }
 
     .main-content {
         display: flex;
@@ -101,7 +106,9 @@ main {
         background: rgba(255, 255, 255, 0.2);
         padding: 20px 0;
         justify-content: space-evenly;
-        border-radius: 5px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 1.3px rgba(0, 0, 0, 0.028), 0px 0px 4.5px rgba(0, 0, 0, 0.042),
+            0px 0px 20px rgba(0, 0, 0, 0.07);
 
         .container {
             display: flex;
@@ -115,7 +122,7 @@ main {
             .temp {
                 font-size: 100px;
                 font-weight: 300;
-                text-shadow: 4px 4px 6px rgba(66, 68, 90, 0.2);
+                // text-shadow: 4px 4px 6px rgba(66, 68, 90, 0.2);
 
                 &::after {
                     content: '°';
@@ -130,7 +137,7 @@ main {
         .description {
             text-transform: capitalize;
             font-size: 20px;
-            text-shadow: 4px 4px 6px rgba(66, 68, 90, 0.26);
+            // text-shadow: 4px 4px 6px rgba(66, 68, 90, 0.26);
         }
     }
 
@@ -143,6 +150,8 @@ main {
         background: rgba(255, 255, 255, 0.2);
         padding: 20px;
         border-radius: 5px;
+        box-shadow: 0px 0px 1.3px rgba(0, 0, 0, 0.028), 0px 0px 4.5px rgba(0, 0, 0, 0.042),
+            0px 0px 20px rgba(0, 0, 0, 0.07);
 
         .condition {
             display: flex;
@@ -166,12 +175,8 @@ main {
                 }
                 .title {
                     font-size: 15px;
-                    color: rgb(235, 235, 235);
+                    color: rgb(148, 148, 148);
                 }
-            }
-
-            .value {
-                font-size: 18px;
             }
         }
     }
@@ -187,6 +192,8 @@ main {
         padding: 20px;
         overflow-x: scroll;
         position: relative;
+        box-shadow: 0px 0px 1.3px rgba(0, 0, 0, 0.028), 0px 0px 4.5px rgba(0, 0, 0, 0.042),
+            0px 0px 20px rgba(0, 0, 0, 0.07);
 
         -ms-overflow-style: none; /* Internet Explorer 10+ */
         scrollbar-width: none; /* Firefox */
