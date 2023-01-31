@@ -4,13 +4,10 @@ import { ref } from 'vue'
 const storeWeather = useWeatherStore()
 
 async function getCity() {
-    const response = await fetch('https://api.ipify.org?format=json')
+    const response = await fetch('http://ipwho.is/')
     const data = await response.json()
 
-    const city = await fetch('http://ip-api.com/json/' + data.ip)
-    const dane = await city.json()
-
-    storeWeather.fetchData(dane.city)
+    storeWeather.fetchData(data.city)
 }
 
 getCity()
