@@ -92,6 +92,7 @@ export const useWeatherStore = defineStore('weather', {
     actions: {
         async fetchData(city: string) {
             this.loaded = false
+            city = city.replace(/-/g, ' ')
             const forecastResponse = await fetch(`/.netlify/functions/forecast?city=${city}`)
             const forecast = await forecastResponse.json()
             this.forecast = forecast
@@ -102,7 +103,7 @@ export const useWeatherStore = defineStore('weather', {
             this.weather = weather
             console.log(weather)
 
-            router.push(city)
+            router.push(city.replace(/ /g, '-'))
             this.loaded = true
         },
     },
