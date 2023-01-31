@@ -4,7 +4,7 @@ import { ref } from 'vue'
 const storeWeather = useWeatherStore()
 
 async function getCity() {
-    const response = await fetch('http://ipwho.is/')
+    const response = await fetch('https://ipwho.is/')
     const data = await response.json()
 
     storeWeather.fetchData(data.city)
