@@ -8,7 +8,9 @@ const storeWeather = useWeatherStore()
 const route = useRoute()
 
 async function getCity() {
-    ;(document.activeElement as HTMLElement).blur()
+    if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur()
+    }
     if (route.params.city) {
         storeWeather.fetchData(String(route.params.city))
     } else {
