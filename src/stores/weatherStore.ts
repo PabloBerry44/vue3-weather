@@ -120,7 +120,7 @@ export const useWeatherStore = defineStore('weather', {
             console.log(geoData)
 
             const apiResponse = await fetch(
-                `/.netlify/functions/fetchWeather?lat=${geoData[0].lat}?lon=${geoData[0].lon}`,
+                `/.netlify/functions/fetchWeather?lat=${String(geoData[0].lat)}?lon=${String(geoData[0].lon)}`,
             )
             const weatherData = await apiResponse.json()
             console.log(weatherData)
