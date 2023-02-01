@@ -8,6 +8,7 @@ interface WeatherArrayItem {
 }
 
 interface Current {
+    dt: number
     feels_like: number
     humidity: number
     pressure: number
@@ -20,6 +21,7 @@ interface Current {
 
 interface Data {
     current: Current
+    hourly: Current[]
 }
 
 export const useWeatherStore = defineStore('weather', {
@@ -28,6 +30,7 @@ export const useWeatherStore = defineStore('weather', {
             loaded: false,
             data: {
                 current: {
+                    dt: 1675267200,
                     feels_like: 15,
                     humidity: 80,
                     pressure: 1020,
@@ -43,6 +46,25 @@ export const useWeatherStore = defineStore('weather', {
                     ],
                     wind_speed: 13,
                 },
+                hourly: [
+                    {
+                        dt: 1675267200,
+                        feels_like: 15,
+                        humidity: 80,
+                        pressure: 1020,
+                        temp: 18,
+                        uvi: 3,
+                        visibility: 10000,
+                        weather: [
+                            {
+                                description: 'Cloudy',
+                                icon: '03d',
+                                main: 'Clouds',
+                            },
+                        ],
+                        wind_speed: 13,
+                    },
+                ],
             } as unknown as Data,
         }
     },
