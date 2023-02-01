@@ -117,7 +117,7 @@ export const useWeatherStore = defineStore('weather', {
 
             const geoResponse = await fetch(`/.netlify/functions/getCords?city=${city}`)
             const geoData = await geoResponse.json()
-            console.log(geoData)
+            console.log(geoData[0].lat, geoData[0].lon)
 
             const apiResponse = await fetch(
                 `/.netlify/functions/fetchWeather?lat=${String(geoData[0].lat)}?lon=${String(geoData[0].lon)}`,
