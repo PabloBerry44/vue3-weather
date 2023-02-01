@@ -25,7 +25,7 @@ const storeWeather = useWeatherStore()
                 <img src="../assets/icons/thermometer_FILL0_wght200_GRAD0_opsz48.svg" alt="" />
                 <span class="title">Feels Like</span>
             </div>
-            <span class="value">{{ storeWeather.data.current.feels_like }}°</span>
+            <span class="value">{{ Math.round(storeWeather.data.current.feels_like) }}°</span>
         </div>
         <div class="condition">
             <div class="title--wrapper">
