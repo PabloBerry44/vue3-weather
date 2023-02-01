@@ -11,7 +11,7 @@ exports.handler = async function (event, context, callback) {
         const geoResponse = await axios.get(geoURL)
 
         const { data } = await axios.get(
-            `https://api.openweathermap.org/data/3.0/onecall?lat=${geoResponse.data[0].lat}&lon=${geoResponse.data[0].lon}&exclude={part}&appid=${apiKey}`,
+            `https://api.openweathermap.org/data/3.0/onecall?lat=${geoResponse.data[0].lat}&lon=${geoResponse.data[0].lon}&units=metric&appid=${apiKey}`,
         )
 
         return {
