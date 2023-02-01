@@ -1,0 +1,97 @@
+<script setup lang="ts">
+import { useWeatherStore } from '../stores/weatherStore'
+
+const storeWeather = useWeatherStore()
+</script>
+
+<template>
+    <section class="conditions">
+        <div class="condition">
+            <div class="title--wrapper">
+                <img src="../assets/icons/humidity_percentage_FILL0_wght200_GRAD0_opsz48.svg" alt="" />
+                <span class="title">Humidity</span>
+            </div>
+            <span class="value">{{ storeWeather.weather.main.humidity }}%</span>
+        </div>
+        <div class="condition">
+            <div class="title--wrapper">
+                <img src="../assets/icons/compress_FILL0_wght200_GRAD0_opsz48.svg" alt="" />
+                <span class="title">Pressure</span>
+            </div>
+            <span class="value">{{ storeWeather.weather.main.pressure }} hPa</span>
+        </div>
+        <div class="condition">
+            <div class="title--wrapper">
+                <img src="../assets/icons/thermometer_FILL0_wght200_GRAD0_opsz48.svg" alt="" />
+                <span class="title">Feels Like</span>
+            </div>
+            <span class="value">{{ storeWeather.weather.main.feels_like }}°</span>
+        </div>
+        <div class="condition">
+            <div class="title--wrapper">
+                <img src="../assets/icons/air_FILL0_wght200_GRAD0_opsz48.svg" alt="" />
+                <span class="title">Wind Speed</span>
+            </div>
+            <span class="value">{{ Math.round(storeWeather.weather.wind.speed) }} km/h</span>
+        </div>
+        <div class="condition">
+            <div class="title--wrapper">
+                <img src="../assets/icons/thermostat_FILL0_wght200_GRAD0_opsz48.svg" alt="" />
+                <span class="title">Min / Max</span>
+            </div>
+            <span class="value"
+                >{{ Math.round(storeWeather.weather.main.temp_min) }}°/{{
+                    Math.round(storeWeather.weather.main.temp_max)
+                }}°</span
+            >
+        </div>
+        <div class="condition">
+            <div class="title--wrapper">
+                <img src="../assets/icons/visibility_FILL0_wght200_GRAD0_opsz48.svg" alt="" />
+                <span class="title">Visibility</span>
+            </div>
+            <span class="value">{{ storeWeather.weather.visibility / 1000 }} km</span>
+        </div>
+    </section>
+</template>
+
+<style scoped lang="scss">
+.conditions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    width: 100%;
+    max-width: 480px;
+    background: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 1.3px rgba(0, 0, 0, 0.02), 0px 0px 4.5px rgba(0, 0, 0, 0.025), 0px 0px 20px rgba(0, 0, 0, 0.04);
+
+    .condition {
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid rgb(219, 219, 219);
+
+        .title--wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            img {
+                width: 30px;
+
+                &:deep(svg) {
+                    fill: white;
+                }
+            }
+            .title {
+                font-size: 15px;
+                color: rgb(148, 148, 148);
+            }
+        }
+    }
+}
+</style>

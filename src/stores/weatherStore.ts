@@ -35,6 +35,7 @@ interface Main {
 interface ForecastListItem {
     main: Main
     dt: number
+    dt_txt: string
     weather: SubWeatherItem[]
 }
 
@@ -58,6 +59,7 @@ export const useWeatherStore = defineStore('weather', {
                             temp: 20,
                         },
                         dt: 1674745200,
+                        dt_txt: '',
                         weather: [
                             {
                                 icon: '02d',
@@ -87,32 +89,52 @@ export const useWeatherStore = defineStore('weather', {
                 },
                 visibility: 10500,
             } as unknown as Weather,
+            groupedDays: [
+                {
+                    id: 0,
+                    hours: [
+                        {
+                            main: {
+                                temp: 20,
+                            },
+                            dt: 1674745200,
+                            dt_txt: '',
+                            weather: [
+                                {
+                                    icon: '02d',
+                                },
+                            ],
+                        },
+                    ] as unknown as ForecastListItem,
+                },
+            ],
         }
     },
     actions: {
         async fetchData(city: string) {
             this.loaded = false
             city = city.replace(/-/g, ' ')
-            const forecastResponse = await fetch(`/.netlify/functions/forecast?city=${city}`)
-            const forecast = await forecastResponse.json()
-            this.forecast = forecast
 
-            const weatherResponse = await fetch(`/.netlify/functions/weather?city=${city}`)
-            const weather = await weatherResponse.json()
-            this.weather = weather
+            const geoResponse = await fetch(`/.netlify/functions/getCords?city=${city}`)
+            const geoData = await geoResponse.json()
+            console.log(geoData)
+
+            const apiResponse = await fetch(
+                `/.netlify/functions/fetchWeather?lat=${geoData[0].lat}?lon=${geoData[0].lon}`,
+            )
+            const weatherData = await apiResponse.json()
+            console.log(weatherData)
 
             router.push(city.replace(/ /g, '-'))
             this.loaded = true
 
+            //change document title
             const cityArray = city.split(' ')
-
             let title = ''
-
             for (let word of cityArray) {
                 word = word[0].toUpperCase() + word.slice(1)
                 title += word + ' '
             }
-
             document.title = title
         },
     },

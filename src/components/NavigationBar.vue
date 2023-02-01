@@ -55,7 +55,9 @@ header {
         top: 0;
         left: 0;
         color: initial;
-        background: rgb(241, 241, 241);
+        background: rgb(255, 255, 255);
+        box-shadow: 0px 0px 1.3px rgba(0, 0, 0, 0.02), 0px 0px 4.5px rgba(0, 0, 0, 0.025),
+            0px 0px 20px rgba(0, 0, 0, 0.04);
     }
 
     form {
