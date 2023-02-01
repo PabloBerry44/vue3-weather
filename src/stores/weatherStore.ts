@@ -1,113 +1,49 @@
 import router from '@/router'
 import { defineStore } from 'pinia'
 
-interface Wind {
-    deg: number
-    speed: number
-}
-
-interface SubWeatherItem {
-    icon: string
+interface WeatherArrayItem {
     description: string
+    icon: string
+    main: string
 }
 
-interface Weather {
-    main: Main
-    weather: SubWeatherItem[]
-    visibility: number
-    wind: Wind
-}
-
-interface City {
-    name: string
-    country: string
-}
-
-interface Main {
-    temp: number
+interface Current {
+    feels_like: number
     humidity: number
     pressure: number
-    feels_like: number
-    temp_max: number
-    temp_min: number
+    temp: number
+    uvi: number
+    visibility: number
+    weather: WeatherArrayItem[]
+    wind_speed: number
 }
 
-interface ForecastListItem {
-    main: Main
-    dt: number
-    dt_txt: string
-    weather: SubWeatherItem[]
-}
-
-interface Forecast {
-    city: City
-    list: ForecastListItem[]
+interface Data {
+    current: Current
 }
 
 export const useWeatherStore = defineStore('weather', {
     state: () => {
         return {
             loaded: false,
-            forecast: {
-                city: {
-                    name: 'Prague',
-                    country: 'CZ',
-                },
-                list: [
-                    {
-                        main: {
-                            temp: 20,
-                        },
-                        dt: 1674745200,
-                        dt_txt: '',
-                        weather: [
-                            {
-                                icon: '02d',
-                            },
-                        ],
-                    },
-                ],
-            } as unknown as Forecast,
-            weather: {
-                main: {
-                    temp: 20,
-                    humidity: 50,
-                    pressure: 1025,
-                    feels_like: 18,
-                    temp_max: 23,
-                    temp_min: 17,
-                },
-                weather: [
-                    {
-                        icon: '04d',
-                        description: 'Clear Sky',
-                    },
-                ],
-                wind: {
-                    deg: 120,
-                    speed: 5,
-                },
-                visibility: 10500,
-            } as unknown as Weather,
-            groupedDays: [
-                {
-                    id: 0,
-                    hours: [
+            data: {
+                current: {
+                    feels_like: 15,
+                    humidity: 80,
+                    pressure: 1020,
+                    temp: 18,
+                    uvi: 3,
+                    visibility: 10000,
+                    weather: [
                         {
-                            main: {
-                                temp: 20,
-                            },
-                            dt: 1674745200,
-                            dt_txt: '',
-                            weather: [
-                                {
-                                    icon: '02d',
-                                },
-                            ],
+                            description: 'Cloudy',
+                            icon: '03d',
+                            main: 'Clouds',
                         },
-                    ] as unknown as ForecastListItem,
+                    ],
+                    wind_speed: 13,
                 },
-            ],
+            } as unknown as Data,
         }
     },
     actions: {

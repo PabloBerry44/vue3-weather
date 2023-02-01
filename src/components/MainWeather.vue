@@ -6,13 +6,13 @@ const storeWeather = useWeatherStore()
 
 <template>
     <section class="main-content">
-        <span class="location">{{ storeWeather.forecast.city.name }}, {{ storeWeather.forecast.city.country }} </span>
+        <!-- <span class="location">{{ storeWeather.forecast.city.name }}, {{ storeWeather.forecast.city.country }} </span> -->
 
         <div class="container">
-            <img :src="'/weatherIcons/' + storeWeather.weather.weather[0].icon + '.webp'" alt="asd" />
-            <span class="temp">{{ Math.round(storeWeather.weather.main.temp) }}</span>
+            <img :src="'/weatherIcons/' + storeWeather.data.current.weather[0].icon + '.webp'" alt="asd" />
+            <span class="temp">{{ Math.round(storeWeather.data.current.temp) }}</span>
         </div>
-        <span class="description">{{ storeWeather.weather.weather[0].description }}</span>
+        <span class="description">{{ storeWeather.data.current.weather[0].main }}</span>
     </section>
 </template>
 

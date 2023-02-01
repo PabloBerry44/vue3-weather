@@ -13,9 +13,9 @@ const storeWeather = useWeatherStore()
     <NavigationBar />
     <main v-if="storeWeather.loaded">
         <MainWeather />
-        <HourlyForecast />
+        <!-- <HourlyForecast /> -->
         <ConditionsWeather />
-        <DailyForecast />
+        <!-- <DailyForecast /> -->
     </main>
 </template>
 
