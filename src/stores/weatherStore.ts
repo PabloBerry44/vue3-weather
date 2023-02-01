@@ -115,15 +115,13 @@ export const useWeatherStore = defineStore('weather', {
             this.loaded = false
             city = city.replace(/-/g, ' ')
 
-            const geoResponse = await fetch(`/.netlify/functions/getCords?city=${city}`)
-            const geoData = await geoResponse.json()
-            console.log(geoData[0].lat, geoData[0].lon)
+            //starte here
 
-            const apiResponse = await fetch(
-                `/.netlify/functions/fetchWeather?lat=${String(geoData[0].lat)}?lon=${String(geoData[0].lon)}`,
-            )
-            const weatherData = await apiResponse.json()
-            console.log(weatherData)
+            const response = await fetch(`/.netlify/functions/callAPI?city=${city}`)
+            const data = await response.json()
+            console.log(data)
+
+            // end ther heh hr ehhe he
 
             router.push(city.replace(/ /g, '-'))
             this.loaded = true
