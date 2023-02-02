@@ -14,9 +14,11 @@ exports.handler = async function (event, context, callback) {
             `https://api.openweathermap.org/data/3.0/onecall?lat=${geoResponse.data[0].lat}&lon=${geoResponse.data[0].lon}&units=metric&appid=${apiKey}`,
         )
 
+        console.log(Object.assign(data, geoResponse))
+
         return {
             statusCode: 200,
-            body: JSON.stringify(Object.assign(data, geoResponse)),
+            body: JSON.stringify(data),
         }
     } catch (error) {
         const { status, statusText, headers, data } = error.response
