@@ -5,17 +5,17 @@ const storeWeather = useWeatherStore()
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
 const computedDay = (unix: number) => {
-    const day = new Date(unix * 1000).getDay() - 1
-    return weekdays[day]
+    const day = new Date(unix * 1000).getDay()
+    return weekdays[day - 1]
 }
 </script>
 
 <template>
     <section class="forecast">
-        <div class="day" v-for="(day, index) in storeWeather.data.daily" :key="index">
+        <div class="day" v-for="(day, index) in storeWeather.data.daily.slice(0, 7)" :key="index">
             <span class="weekDay">{{ computedDay(day.dt) }}</span>
             <img :src="'/weatherIcons/' + day.weather[0].icon + '.webp'" alt="asd" />
-            <span class="temp">{{ day.temp.min }}° - {{ day.temp.max }}°</span>
+            <span class="temp">{{ Math.round(day.temp.min) }}° - {{ Math.round(day.temp.max) }}°</span>
         </div>
     </section>
 </template>
@@ -33,6 +33,7 @@ const computedDay = (unix: number) => {
     justify-content: space-evenly;
     border-radius: 20px;
     box-shadow: 0px 0px 1.3px rgba(0, 0, 0, 0.02), 0px 0px 4.5px rgba(0, 0, 0, 0.025), 0px 0px 20px rgba(0, 0, 0, 0.04);
+    gap: 10px;
 
     .day {
         display: flex;
@@ -43,6 +44,10 @@ const computedDay = (unix: number) => {
         padding: 10px 20px;
         border-radius: 20px;
         width: 100%;
+
+        .weekDay {
+            width: 90px;
+        }
 
         img {
             width: 32px;
