@@ -16,7 +16,7 @@ exports.handler = async function (event, context, callback) {
 
         return {
             statusCode: 200,
-            body: JSON.stringify(data) + JSON.stringify(geoResponse),
+            body: JSON.stringify(data, geoResponse),
         }
     } catch (error) {
         const { status, statusText, headers, data } = error.response
