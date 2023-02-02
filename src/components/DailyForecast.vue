@@ -5,7 +5,7 @@ const storeWeather = useWeatherStore()
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
 const computedDay = (unix: number) => {
-    const day = new Date(unix * 1000).getDay()
+    const day = new Date((unix + storeWeather.data.timezone_offset) * 1000).getDay()
     return weekdays[day]
 }
 </script>
@@ -39,7 +39,7 @@ const computedDay = (unix: number) => {
     justify-content: space-evenly;
     border-radius: 20px;
     box-shadow: 0px 0px 1.3px rgba(0, 0, 0, 0.02), 0px 0px 4.5px rgba(0, 0, 0, 0.025), 0px 0px 20px rgba(0, 0, 0, 0.04);
-    gap: 10px;
+    gap: 5px;
 
     .day {
         display: flex;
@@ -48,8 +48,18 @@ const computedDay = (unix: number) => {
         justify-content: space-between;
         background-color: #f8f8f8;
         padding: 10px 20px;
-        border-radius: 20px;
+        // border-radius: 20px;
         width: 100%;
+
+        &:first-child {
+            border-top-right-radius: 20px;
+            border-top-left-radius: 20px;
+        }
+
+        &:last-child {
+            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
 
         .wrapper {
             display: flex;

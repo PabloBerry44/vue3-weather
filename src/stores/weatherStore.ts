@@ -1,4 +1,3 @@
-import router from '@/router'
 import { defineStore } from 'pinia'
 
 interface WeatherArrayItem {
@@ -40,6 +39,7 @@ interface Data {
     current: Current
     daily: Daily[]
     hourly: Current[]
+    timezone_offset: number
 }
 
 export const useWeatherStore = defineStore('weather', {
@@ -103,6 +103,7 @@ export const useWeatherStore = defineStore('weather', {
                         wind_speed: 13,
                     },
                 ],
+                timezone_offset: 0,
             } as unknown as Data,
         }
     },
@@ -111,19 +112,13 @@ export const useWeatherStore = defineStore('weather', {
             this.loaded = false
             city = city.replace(/-/g, ' ')
 
-            //starte here
-
             const response = await fetch(`/.netlify/functions/fetchApi?city=${city}`)
             const data = await response.json()
             this.data = data
-            console.log(data)
 
-            // end ther heh hr ehhe he
-
-            router.push(city.replace(/ /g, '-'))
             this.loaded = true
 
-            //change document title
+            // change document title
             const cityArray = city.split(' ')
             let title = ''
             for (let word of cityArray) {

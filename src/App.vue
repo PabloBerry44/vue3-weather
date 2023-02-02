@@ -2,34 +2,35 @@
 import NavigationBar from './components/NavigationBar.vue'
 import FooterVue from './components/Footer.vue'
 import { useWeatherStore } from './stores/weatherStore'
-import { useRoute } from 'vue-router'
-import { watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { watch, onMounted, onUpdated } from 'vue'
+// import router from '@/router'
 const storeWeather = useWeatherStore()
 
 const route = useRoute()
+const router = useRouter()
 
-async function getCity() {
-    if (document.activeElement instanceof HTMLElement) {
-        document.activeElement.blur()
-    }
-    if (route.params.city) {
-        storeWeather.fetchData(String(route.params.city))
-    } else {
+onMounted(async () => {
+    await router.isReady()
+    if (!route.params.city) {
         const response = await fetch('https://ipwho.is/')
         const data = await response.json()
 
-        storeWeather.fetchData(data.city)
+        changeRoute(data.city)
     }
-}
-
-getCity()
+})
 
 watch(
     () => route.fullPath,
     async () => {
-        getCity()
+        await router.isReady()
+        storeWeather.fetchData(String(route.params.city))
     },
 )
+
+function changeRoute(city: string) {
+    router.push(city.replace(/ /g, '-'))
+}
 </script>
 
 <template>
@@ -38,7 +39,7 @@ watch(
         <span>Loading data</span>
     </div>
     <div class="wrapper">
-        <NavigationBar @search="(value) => storeWeather.fetchData(value)" />
+        <NavigationBar @search="(value) => changeRoute(value)" />
         <router-view></router-view>
     </div>
 

@@ -2,7 +2,7 @@
 import { useWeatherStore } from '../stores/weatherStore'
 
 const computedHour = (unix: number) => {
-    const hour = (new Date(unix * 1000).getHours() - 1).toString()
+    const hour = new Date((unix + storeWeather.data.timezone_offset) * 1000).getHours().toString()
     return hour.length == 1 ? '0' + hour : hour
 }
 
@@ -43,7 +43,7 @@ const storeWeather = useWeatherStore()
     .hour--details {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: space-evenly;
         align-items: center;
         gap: 10px;
 
