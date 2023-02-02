@@ -16,7 +16,7 @@ exports.handler = async function (event, context, callback) {
 
         const response = {
             ...data,
-            ...geoResponse,
+            ...geoResponse.data,
         }
         console.log(response)
 
