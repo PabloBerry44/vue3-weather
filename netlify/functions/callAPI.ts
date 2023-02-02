@@ -14,7 +14,10 @@ exports.handler = async function (event, context, callback) {
             `https://api.openweathermap.org/data/3.0/onecall?lat=${geoResponse.data[0].lat}&lon=${geoResponse.data[0].lon}&units=metric&appid=${apiKey}`,
         )
 
-        const response = Object.assign(data, geoResponse)
+        const response = {
+            ...data,
+            ...geoResponse,
+        }
         console.log(response)
 
         return {
