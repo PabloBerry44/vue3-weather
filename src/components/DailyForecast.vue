@@ -6,7 +6,7 @@ const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frida
 
 const computedDay = (unix: number) => {
     const day = new Date(unix * 1000).getDay()
-    return weekdays[day - 1]
+    return weekdays[day]
 }
 </script>
 
