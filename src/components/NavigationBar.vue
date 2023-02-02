@@ -1,42 +1,11 @@
 <script setup lang="ts">
-import { useWeatherStore } from '../stores/weatherStore'
 import { ref } from 'vue'
-import { useRoute } from 'vue-router'
-import { watch } from 'vue'
-const storeWeather = useWeatherStore()
-
-const route = useRoute()
-
-async function getCity() {
-    if (document.activeElement instanceof HTMLElement) {
-        document.activeElement.blur()
-    }
-    if (route.params.city) {
-        storeWeather.fetchData(String(route.params.city))
-    } else {
-        const response = await fetch('https://ipwho.is/')
-        const data = await response.json()
-
-        storeWeather.fetchData(data.city)
-    }
-}
-
-getCity()
-
-watch(
-    () => route.fullPath,
-    async () => {
-        getCity()
-    },
-)
-
-// storeWeather.fetchData('london')
 
 const searchValue = ref('')
 </script>
 <template>
     <header>
-        <form @submit.prevent="storeWeather.fetchData(searchValue), (searchValue = '')">
+        <form @submit.prevent="$emit('search', searchValue), (searchValue = '')">
             <input type="text" v-model="searchValue" placeholder="Search for city" />
         </form>
     </header>

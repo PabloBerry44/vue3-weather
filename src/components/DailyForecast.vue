@@ -18,7 +18,10 @@ const computedDay = (unix: number) => {
                 <img :src="'/weatherIcons/' + day.weather[0].icon + '.webp'" alt="asd" />
             </div>
 
-            <span class="temp">{{ Math.round(day.temp.min) }}° - {{ Math.round(day.temp.max) }}°</span>
+            <div class="temp-wrapper">
+                <span class="temp-min">{{ Math.round(day.temp.min) }}°</span>
+                <span class="temp-max">{{ Math.round(day.temp.max) }}°</span>
+            </div>
         </div>
     </section>
 </template>
@@ -43,7 +46,7 @@ const computedDay = (unix: number) => {
         flex-flow: row nowrap;
         align-items: center;
         justify-content: space-between;
-        background-color: #f3f4f5;
+        background-color: #f8f8f8;
         padding: 10px 20px;
         border-radius: 20px;
         width: 100%;
@@ -57,6 +60,23 @@ const computedDay = (unix: number) => {
 
             .weekDay {
                 width: 90px;
+            }
+        }
+
+        .temp-wrapper {
+            font-weight: 500;
+            display: flex;
+            gap: 20px;
+            align-items: flex-end;
+
+            .temp-min {
+                color: rgb(116, 116, 116);
+            }
+            .temp-max {
+                font-size: 24px;
+                line-height: 24px;
+                width: 35px;
+                text-align: center;
             }
         }
 

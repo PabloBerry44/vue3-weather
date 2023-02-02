@@ -1,13 +1,42 @@
 <script setup lang="ts">
+import NavigationBar from './components/NavigationBar.vue'
 import { useWeatherStore } from './stores/weatherStore'
+import { useRoute } from 'vue-router'
+import { watch } from 'vue'
 const storeWeather = useWeatherStore()
+
+const route = useRoute()
+
+async function getCity() {
+    if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur()
+    }
+    if (route.params.city) {
+        storeWeather.fetchData(String(route.params.city))
+    } else {
+        const response = await fetch('https://ipwho.is/')
+        const data = await response.json()
+
+        storeWeather.fetchData(data.city)
+    }
+}
+
+getCity()
+
+watch(
+    () => route.fullPath,
+    async () => {
+        getCity()
+    },
+)
 </script>
 
 <template>
-    <!-- <div class="loading" v-if="!storeWeather.loaded">
+    <div class="loading" v-if="!storeWeather.loaded">
         <div class="circle"></div>
         <span>Loading data</span>
-    </div> -->
+    </div>
+    <NavigationBar @search="(value) => storeWeather.fetchData(value)" />
     <router-view></router-view>
 </template>
 <style>

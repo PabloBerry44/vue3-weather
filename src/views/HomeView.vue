@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useWeatherStore } from '../stores/weatherStore'
-import NavigationBar from '../components/NavigationBar.vue'
 import MainWeather from '@/components/MainWeather.vue'
 import ConditionsWeather from '@/components/ConditionsWeather.vue'
 import HourlyForecast from '@/components/HourlyForecast.vue'
@@ -10,7 +9,6 @@ const storeWeather = useWeatherStore()
 </script>
 
 <template>
-    <NavigationBar />
     <main v-if="storeWeather.loaded">
         <MainWeather />
         <HourlyForecast />
