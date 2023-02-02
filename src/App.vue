@@ -4,10 +4,10 @@ const storeWeather = useWeatherStore()
 </script>
 
 <template>
-    <!-- <div class="loading" v-if="!storeWeather.loaded">
+    <div class="loading" v-if="!storeWeather.loaded">
         <div class="circle"></div>
         <span>Loading data</span>
-    </div> -->
+    </div>
     <router-view></router-view>
 </template>
 <style>
