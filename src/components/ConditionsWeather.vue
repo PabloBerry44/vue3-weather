@@ -39,11 +39,10 @@ const storeWeather = useWeatherStore()
                 <img src="../assets/icons/thermostat_FILL0_wght200_GRAD0_opsz48.svg" alt="" />
                 <span class="title">Min / Max</span>
             </div>
-            <!-- <span class="value"
-                >{{ Math.round(storeWeather.weather.main.temp_min) }}°/{{
-                    Math.round(storeWeather.weather.main.temp_max)
-                }}°
-            </span> -->
+            <span class="value"
+                >{{ Math.round(storeWeather.data.daily[0].temp.min) }}°/
+                {{ Math.round(storeWeather.data.daily[0].temp.max) }}°
+            </span>
         </div>
         <div class="condition">
             <div class="title--wrapper">

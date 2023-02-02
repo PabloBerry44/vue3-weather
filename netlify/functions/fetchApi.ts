@@ -1,7 +1,7 @@
 import axios from 'axios'
 require('dotenv').config()
 
-exports.handler = async function (event, context, callback) {
+exports.handler = async function (event) {
     const city = event.queryStringParameters.city
     const apiKey = process.env.API_KEY
 

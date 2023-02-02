@@ -12,6 +12,11 @@ interface Temp {
     max: number
 }
 
+interface Geo {
+    country: string
+    name: string
+}
+
 interface Current {
     dt: number
     feels_like: number
@@ -31,6 +36,7 @@ interface Daily {
 }
 
 interface Data {
+    0: Geo
     current: Current
     daily: Daily[]
     hourly: Current[]
@@ -41,6 +47,10 @@ export const useWeatherStore = defineStore('weather', {
         return {
             loaded: false,
             data: {
+                0: {
+                    country: 'ES',
+                    name: 'Seville',
+                },
                 current: {
                     dt: 1675267200,
                     feels_like: 15,
