@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import NavigationBar from './components/NavigationBar.vue'
+import FooterVue from './components/Footer.vue'
 import { useWeatherStore } from './stores/weatherStore'
 import { useRoute } from 'vue-router'
 import { watch } from 'vue'
@@ -36,8 +37,12 @@ watch(
         <div class="circle"></div>
         <span>Loading data</span>
     </div>
-    <NavigationBar @search="(value) => storeWeather.fetchData(value)" />
-    <router-view></router-view>
+    <div class="wrapper">
+        <NavigationBar @search="(value) => storeWeather.fetchData(value)" />
+        <router-view></router-view>
+    </div>
+
+    <FooterVue />
 </template>
 <style>
 .loading {
