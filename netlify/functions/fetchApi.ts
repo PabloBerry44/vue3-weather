@@ -3,7 +3,7 @@ require('dotenv').config()
 
 exports.handler = async function (event, context, callback) {
     const city = event.queryStringParameters.city
-    const apiKey = '0a7876f173f8046b41756fe449f3deef'
+    const apiKey = process.env.API_KEY
 
     const geoURL = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}`
 
