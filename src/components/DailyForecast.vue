@@ -5,7 +5,7 @@ const storeWeather = useWeatherStore()
 </script>
 
 <template>
-    <section class="daily--forecast">hello</section>
+    <section class="daily--forecast">smoethings wrong</section>
 </template>
 
 <style scoped lang="scss"></style>
