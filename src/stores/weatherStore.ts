@@ -113,7 +113,7 @@ export const useWeatherStore = defineStore('weather', {
 
             //starte here
 
-            const response = await fetch(`/.netlify/functions/callAPI?city=${city}`)
+            const response = await fetch(`./netlify/functions/callAPI?city=${city}`)
             console.log(response)
             const data = await response.json()
             this.data = data
