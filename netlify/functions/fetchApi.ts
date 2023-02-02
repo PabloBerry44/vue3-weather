@@ -19,9 +19,13 @@ exports.handler = async function (event) {
         //     ...geoResponse.data,
         // }
 
+        JSON.stringify(data)
+
+        console.log(data)
+
         return {
             statusCode: 200,
-            body: JSON.stringify(data),
+            body: data,
         }
     } catch (error) {
         const { status, statusText, headers, data } = error.response
