@@ -25,7 +25,7 @@ const storeWeather = useWeatherStore()
     width: 100%;
     max-width: 480px;
     background: rgb(255, 255, 255);
-    padding: 20px 0;
+    padding: 20px;
     justify-content: space-evenly;
     border-radius: 20px;
     box-shadow: 0px 0px 1.3px rgba(0, 0, 0, 0.02), 0px 0px 4.5px rgba(0, 0, 0, 0.025), 0px 0px 20px rgba(0, 0, 0, 0.04);

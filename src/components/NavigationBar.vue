@@ -7,28 +7,28 @@ const storeWeather = useWeatherStore()
 
 const route = useRoute()
 
-async function getCity() {
-    if (document.activeElement instanceof HTMLElement) {
-        document.activeElement.blur()
-    }
-    if (route.params.city) {
-        storeWeather.fetchData(String(route.params.city))
-    } else {
-        const response = await fetch('https://ipwho.is/')
-        const data = await response.json()
+// async function getCity() {
+//     if (document.activeElement instanceof HTMLElement) {
+//         document.activeElement.blur()
+//     }
+//     if (route.params.city) {
+//         storeWeather.fetchData(String(route.params.city))
+//     } else {
+//         const response = await fetch('https://ipwho.is/')
+//         const data = await response.json()
 
-        storeWeather.fetchData(data.city)
-    }
-}
+//         storeWeather.fetchData(data.city)
+//     }
+// }
 
-getCity()
+// getCity()
 
-watch(
-    () => route.fullPath,
-    async () => {
-        getCity()
-    },
-)
+// watch(
+//     () => route.fullPath,
+//     async () => {
+//         getCity()
+//     },
+// )
 
 const searchValue = ref('')
 </script>

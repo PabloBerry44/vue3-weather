@@ -7,6 +7,11 @@ interface WeatherArrayItem {
     main: string
 }
 
+interface Temp {
+    min: number
+    max: number
+}
+
 interface Current {
     dt: number
     feels_like: number
@@ -19,8 +24,15 @@ interface Current {
     wind_speed: number
 }
 
+interface Daily {
+    dt: number
+    temp: Temp
+    weather: WeatherArrayItem[]
+}
+
 interface Data {
     current: Current
+    daily: Daily[]
     hourly: Current[]
 }
 
@@ -46,6 +58,22 @@ export const useWeatherStore = defineStore('weather', {
                     ],
                     wind_speed: 13,
                 },
+                daily: [
+                    {
+                        dt: 1675368000,
+                        temp: {
+                            min: 10,
+                            max: 15,
+                        },
+                        weather: [
+                            {
+                                description: 'Cloudy',
+                                icon: '03d',
+                                main: 'Clouds',
+                            },
+                        ],
+                    },
+                ],
                 hourly: [
                     {
                         dt: 1675267200,
