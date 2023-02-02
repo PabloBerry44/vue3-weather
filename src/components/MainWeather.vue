@@ -6,7 +6,7 @@ const storeWeather = useWeatherStore()
 
 <template>
     <section class="main-content">
-        <span class="location">{{ storeWeather.data[0].name }}, {{ storeWeather.data[0].country }} </span>
+        <!-- <span class="location">{{ storeWeather.data[0].name }}, {{ storeWeather.data[0].country }} </span> -->
 
         <div class="container">
             <img :src="'/weatherIcons/' + storeWeather.data.current.weather[0].icon + '.webp'" alt="asd" />

@@ -30,6 +30,8 @@ watch(
     },
 )
 
+// storeWeather.fetchData('london')
+
 const searchValue = ref('')
 </script>
 <template>

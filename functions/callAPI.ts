@@ -1,7 +1,7 @@
 import axios from 'axios'
 require('dotenv').config()
 
-exports.handler = async function (event, context, callback) {
+exports.handler = async function (event) {
     const city = event.queryStringParameters.city
     const apiKey = process.env.weatherKEY
 
@@ -14,14 +14,14 @@ exports.handler = async function (event, context, callback) {
             `https://api.openweathermap.org/data/3.0/onecall?lat=${geoResponse.data[0].lat}&lon=${geoResponse.data[0].lon}&units=metric&appid=${apiKey}`,
         )
 
-        const response = {
-            ...data,
-            ...geoResponse.data,
-        }
+        // const response = {
+        //     ...data,
+        //     ...geoResponse.data,
+        // }
 
         return {
             statusCode: 200,
-            body: JSON.stringify(response),
+            body: JSON.stringify(data),
         }
     } catch (error) {
         const { status, statusText, headers, data } = error.response
