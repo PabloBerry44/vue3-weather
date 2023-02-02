@@ -13,8 +13,11 @@ const computedDay = (unix: number) => {
 <template>
     <section class="forecast">
         <div class="day" v-for="(day, index) in storeWeather.data.daily.slice(0, 7)" :key="index">
-            <span class="weekDay">{{ computedDay(day.dt) }}</span>
-            <img :src="'/weatherIcons/' + day.weather[0].icon + '.webp'" alt="asd" />
+            <div class="wrapper">
+                <span class="weekDay">{{ computedDay(day.dt) }}</span>
+                <img :src="'/weatherIcons/' + day.weather[0].icon + '.webp'" alt="asd" />
+            </div>
+
             <span class="temp">{{ Math.round(day.temp.min) }}° - {{ Math.round(day.temp.max) }}°</span>
         </div>
     </section>
@@ -45,8 +48,16 @@ const computedDay = (unix: number) => {
         border-radius: 20px;
         width: 100%;
 
-        .weekDay {
-            width: 90px;
+        .wrapper {
+            display: flex;
+            width: 60%;
+            flex-flow: row nowrap;
+            align-items: center;
+            justify-content: space-between;
+
+            .weekDay {
+                width: 90px;
+            }
         }
 
         img {
