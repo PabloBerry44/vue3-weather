@@ -6,7 +6,11 @@ const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frida
 
 const computedDay = (unix: number) => {
     const day = new Date((unix + storeWeather.data.timezone_offset) * 1000).getDay()
-    return weekdays[day]
+
+    const date = new Date()
+    const today = date.getDay()
+
+    return day == today ? 'Today' : weekdays[day]
 }
 </script>
 

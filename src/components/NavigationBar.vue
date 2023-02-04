@@ -13,6 +13,7 @@ function handleSearch() {
         search.value = true
     } else {
         emit('search', searchValue.value)
+        searchValue.value = ''
     }
 }
 
@@ -25,11 +26,14 @@ function handleTheme() {
 <template>
     <header>
         <button @click="handleTheme()">
-            <img :src="'/themeIcons/' + storeWeather.theme + '.svg'" alt="asd" />
+            <transition name="slide-up">
+                <img v-if="storeWeather.theme != 'dark'" src="../assets/icons/light.svg" alt="lightmode" />
+                <img v-else-if="storeWeather.theme == 'dark'" src="../assets/icons/dark.svg" alt="darkmode" />
+            </transition>
         </button>
 
         <div class="logo-input-wrapper">
-            <transition name="slide-up">
+            <transition name="slide-left">
                 <LogoImage v-if="!search" />
                 <form v-else-if="search" @submit.prevent="$emit('search', searchValue), (searchValue = '')">
                     <input type="text" v-model="searchValue" placeholder="Search for city" />
@@ -55,9 +59,10 @@ header {
     button {
         cursor: pointer;
         width: 38px;
-        display: flex;
+        display: grid;
         img {
             width: 100%;
+            grid-area: 1 / 1;
         }
     }
 
@@ -97,6 +102,21 @@ header {
         }
     }
 
+    .slide-left-enter-active,
+    .slide-left-leave-active {
+        transition: all 0.25s ease-out;
+    }
+
+    .slide-left-enter-from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    .slide-left-leave-to {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
     .slide-up-enter-active,
     .slide-up-leave-active {
         transition: all 0.25s ease-out;
@@ -104,12 +124,12 @@ header {
 
     .slide-up-enter-from {
         opacity: 0;
-        transform: translateX(30px);
+        transform: translateY(30px);
     }
 
     .slide-up-leave-to {
         opacity: 0;
-        transform: translateX(-30px);
+        transform: translateY(-30px);
     }
 }
 </style>
