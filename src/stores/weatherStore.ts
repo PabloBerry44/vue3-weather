@@ -45,6 +45,7 @@ interface Data {
 export const useWeatherStore = defineStore('weather', {
     state: () => {
         return {
+            theme: 'light',
             loaded: false,
             data: {
                 0: {

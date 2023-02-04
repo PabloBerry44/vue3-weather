@@ -34,7 +34,8 @@ const computedDay = (unix: number) => {
     min-width: 300px;
     width: 100%;
     max-width: 480px;
-    background: rgb(255, 255, 255);
+    background: var(--component-background);
+    color: var(--primary-text-color);
     padding: 10px;
     justify-content: space-evenly;
     border-radius: 20px;
@@ -46,7 +47,7 @@ const computedDay = (unix: number) => {
         flex-flow: row nowrap;
         align-items: center;
         justify-content: space-between;
-        background-color: #f8f8f8;
+        background-color: var(--day-details-background);
         padding: 10px 20px;
         // border-radius: 20px;
         width: 100%;
@@ -80,7 +81,7 @@ const computedDay = (unix: number) => {
             align-items: flex-end;
 
             .temp-min {
-                color: rgb(116, 116, 116);
+                color: var(--secondary-text-color);
             }
             .temp-max {
                 font-size: 24px;

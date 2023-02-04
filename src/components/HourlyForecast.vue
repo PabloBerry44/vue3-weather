@@ -23,7 +23,8 @@ const storeWeather = useWeatherStore()
 .forecast {
     width: 100%;
     max-width: 480px;
-    background: rgb(255, 255, 255);
+    background: var(--component-background);
+    color: var(--primary-text-color);
     border-radius: 20px;
     display: flex;
     flex-flow: row nowrap;

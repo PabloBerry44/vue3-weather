@@ -1,9 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 * {
     font-family: 'Inter', sans-serif;
-    font-family: 'Roboto', sans-serif;
     background: transparent;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -22,8 +20,32 @@
     display: flex;
     flex-flow: column;
     justify-content: space-between;
+    padding: 10px;
 }
 
 body {
-    background-color: #f3f4f5;
+    --component-background: #ffffff;
+    --body-background: #f3f4f5;
+    --dark-text: #000000;
+    --light-text: #d3d3d3;
+    --day-details-background: #f8f8f8;
+    --light-accent: #afafaf;
+    --input-background: #f3f4f5;
+}
+body.darkMode {
+    --component-background: #1d1d1d;
+    --body-background: #000000;
+    --primary-text-color: #ffffff;
+    --secondary-text-color: #d3d3d3;
+    --day-details-background: #252525;
+    --light-accent: #575757;
+    --input-background: #4b4b4b;
+}
+
+body.darkMode img[src$=".svg"] {
+    filter: invert(100%);
+}
+
+body {
+    background-color: var(--body-background);
 }

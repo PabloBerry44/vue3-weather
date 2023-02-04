@@ -61,7 +61,7 @@ const storeWeather = useWeatherStore()
     gap: 15px;
     width: 100%;
     max-width: 480px;
-    background: rgb(255, 255, 255);
+    background: var(--component-background);
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0px 0px 1.3px rgba(0, 0, 0, 0.02), 0px 0px 4.5px rgba(0, 0, 0, 0.025), 0px 0px 20px rgba(0, 0, 0, 0.04);
@@ -72,7 +72,8 @@ const storeWeather = useWeatherStore()
         gap: 40px;
         align-items: center;
         justify-content: space-between;
-        border-bottom: 1px solid rgb(219, 219, 219);
+        border-bottom: 1px solid var(--light-accent);
+        color: var(--primary-text-color);
 
         .title--wrapper {
             display: flex;
@@ -81,14 +82,10 @@ const storeWeather = useWeatherStore()
 
             img {
                 width: 30px;
-
-                &:deep(svg) {
-                    fill: white;
-                }
             }
             .title {
                 font-size: 15px;
-                color: rgb(148, 148, 148);
+                color: var(--secondary-text-color);
             }
         }
     }

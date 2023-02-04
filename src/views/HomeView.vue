@@ -22,10 +22,10 @@ main {
     display: grid;
     grid-template-columns: 1fr;
     justify-content: center;
-    padding: 10px;
     min-width: 320px;
     width: 100%;
     gap: 20px;
+    margin-top: 20px;
 
     @media (min-width: 800px) {
         grid-template-columns: 1fr 1fr;

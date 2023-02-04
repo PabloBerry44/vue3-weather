@@ -3,8 +3,7 @@ import NavigationBar from './components/NavigationBar.vue'
 import FooterVue from './components/Footer.vue'
 import { useWeatherStore } from './stores/weatherStore'
 import { useRoute, useRouter } from 'vue-router'
-import { watch, onMounted, onUpdated } from 'vue'
-// import router from '@/router'
+import { watch, onMounted } from 'vue'
 const storeWeather = useWeatherStore()
 
 const route = useRoute()
@@ -38,14 +37,14 @@ function changeRoute(city: string) {
         <div class="circle"></div>
         <span>Loading data</span>
     </div>
-    <div class="wrapper">
+    <div class="wrapper" :class="{ darkMode: storeWeather.theme == 'dark' }">
         <NavigationBar @search="(value) => changeRoute(value)" />
         <router-view></router-view>
     </div>
 
     <FooterVue />
 </template>
-<style>
+<style scoped>
 .loading {
     width: 100%;
     height: 100dvh;
@@ -82,3 +81,5 @@ function changeRoute(city: string) {
     }
 }
 </style>
+
+<style lang="scss"></style>
