@@ -18,7 +18,8 @@ function handleSearch() {
 
 function handleTheme() {
     storeWeather.theme = storeWeather.theme == 'light' ? 'dark' : 'light'
-    document.body.classList.toggle('darkMode')
+    document.body.classList.toggle('dark')
+    storeWeather.saveLocally()
 }
 </script>
 <template>

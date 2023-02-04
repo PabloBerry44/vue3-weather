@@ -128,5 +128,13 @@ export const useWeatherStore = defineStore('weather', {
             }
             document.title = title
         },
+        saveLocally() {
+            window.localStorage.setItem('theme', this.theme)
+        },
+        getLocalValues() {
+            if (window.localStorage.getItem('theme') == null) return
+
+            this.theme = String(window.localStorage.getItem('theme'))
+        },
     },
 })

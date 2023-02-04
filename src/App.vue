@@ -9,6 +9,9 @@ const storeWeather = useWeatherStore()
 const route = useRoute()
 const router = useRouter()
 
+storeWeather.getLocalValues()
+if (storeWeather.theme == 'dark') document.body.classList.add('dark')
+
 onMounted(async () => {
     await router.isReady()
     if (!route.params.city) {
@@ -48,7 +51,8 @@ function changeRoute(city: string) {
 .loading {
     width: 100%;
     height: 100dvh;
-    background: white;
+    background: var(--body-background);
+    color: var(--secondary-text-color);
     position: absolute;
     left: 0;
     top: 0;
@@ -64,7 +68,7 @@ function changeRoute(city: string) {
     width: 50px;
     height: 50px;
     border: 5px solid rgb(0, 89, 223);
-    border-bottom: 4px solid white;
+    border-bottom: 4px solid var(--body-background);
     border-radius: 50%;
     animation-name: rotate;
     animation-duration: 1s;

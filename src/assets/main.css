@@ -32,7 +32,7 @@ body {
     --light-accent: #afafaf;
     --input-background: #f3f4f5;
 }
-body.darkMode {
+body.dark {
     --component-background: #1d1d1d;
     --body-background: #000000;
     --primary-text-color: #ffffff;
@@ -42,7 +42,7 @@ body.darkMode {
     --input-background: #4b4b4b;
 }
 
-body.darkMode img[src$=".svg"] {
+body.dark img[src$=".svg"] {
     filter: invert(100%);
 }
 
