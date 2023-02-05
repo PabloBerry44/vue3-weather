@@ -97,7 +97,8 @@ const computedHour = (unix: number) => {
         }
 
         .wind-circle {
-            width: 70%;
+            width: 90%;
+            max-width: 128px;
             aspect-ratio: 1 / 1;
             border: 3px var(--light-accent) dotted;
             border-radius: 50%;
