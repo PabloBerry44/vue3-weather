@@ -7,10 +7,16 @@ const storeWeather = useWeatherStore()
 const searchValue = ref('')
 const search = ref(false)
 const emit = defineEmits(['search'])
+const formInput = ref(HTMLInputElement)
 
 function handleSearch() {
     if (!search.value) {
         search.value = true
+        setTimeout(() => {
+            if (formInput.value instanceof HTMLElement) {
+                formInput.value.focus()
+            }
+        }, 100)
     } else {
         emit('search', searchValue.value)
         searchValue.value = ''
@@ -36,7 +42,7 @@ function handleTheme() {
             <transition name="slide-left">
                 <LogoImage v-if="!search" />
                 <form v-else-if="search" @submit.prevent="$emit('search', searchValue), (searchValue = '')">
-                    <input type="text" v-model="searchValue" placeholder="Search for city" />
+                    <input ref="formInput" type="text" v-model="searchValue" placeholder="Search for city" />
                 </form>
             </transition>
         </div>
