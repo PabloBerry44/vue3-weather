@@ -94,6 +94,11 @@ const computedHour = (unix: number) => {
 
         .value {
             font-size: 35px;
+            color: var(--primary-text-color);
+        }
+
+        .descr {
+            color: var(--secondary-text-color);
         }
 
         .wind-circle {
