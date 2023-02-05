@@ -21,15 +21,20 @@ interface Current {
     feels_like: number
     humidity: number
     pressure: number
+    sunrise: number
+    sunset: number
     temp: number
     uvi: number
     visibility: number
     weather: WeatherArrayItem[]
     wind_speed: number
+    wind_deg: number
 }
 
 interface Daily {
     dt: number
+    pop: number
+    rain: number
     temp: Temp
     weather: WeatherArrayItem[]
 }
@@ -57,6 +62,8 @@ export const useWeatherStore = defineStore('weather', {
                     feels_like: 15,
                     humidity: 80,
                     pressure: 1020,
+                    sunrise: 1675586114,
+                    sunset: 1675633104,
                     temp: 18,
                     uvi: 3,
                     visibility: 10000,
@@ -68,10 +75,13 @@ export const useWeatherStore = defineStore('weather', {
                         },
                     ],
                     wind_speed: 13,
+                    wind_deg: 50,
                 },
                 daily: [
                     {
                         dt: 1675368000,
+                        pop: 0,
+                        rain: 0,
                         temp: {
                             min: 10,
                             max: 15,
@@ -116,6 +126,7 @@ export const useWeatherStore = defineStore('weather', {
             const response = await fetch(`/.netlify/functions/fetchApi?city=${city}`)
             const data = await response.json()
             this.data = data
+            console.log(data)
 
             this.loaded = true
 
