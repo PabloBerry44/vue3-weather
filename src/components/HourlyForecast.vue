@@ -13,12 +13,7 @@ const storeWeather = useWeatherStore()
     <section class="forecast">
         <div class="hour--details" v-for="(detail, index) in storeWeather.data.hourly.slice(0, 24)" :key="index">
             <span class="hour"> {{ computedHour(detail.dt) }}</span>
-            <img
-                width="32"
-                height="32"
-                :src="'/weatherIcons/' + detail.weather[0].icon + '.webp'"
-                :alt="detail.weather[0].main"
-            />
+            <img width="32" :src="'/weatherIcons/' + detail.weather[0].icon + '.webp'" :alt="detail.weather[0].main" />
             <span class="temp"> {{ Math.round(detail.temp) }} </span>
         </div>
     </section>

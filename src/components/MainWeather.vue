@@ -12,6 +12,7 @@ const storeWeather = useWeatherStore()
             <img
                 :src="'/weatherIcons/' + storeWeather.data.current.weather[0].icon + '.webp'"
                 :alt="storeWeather.data.current.weather[0].main"
+                width="80"
             />
             <span class="temp">{{ Math.round(storeWeather.data.current.temp) }}</span>
         </div>
