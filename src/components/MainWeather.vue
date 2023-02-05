@@ -9,10 +9,13 @@ const storeWeather = useWeatherStore()
         <span class="location">{{ storeWeather.data[0].name }}, {{ storeWeather.data[0].country }} </span>
 
         <div class="container">
-            <img :src="'/weatherIcons/' + storeWeather.data.current.weather[0].icon + '.webp'" alt="asd" />
+            <img
+                :src="'/weatherIcons/' + storeWeather.data.current.weather[0].icon + '.webp'"
+                :alt="storeWeather.data.current.weather[0].main"
+            />
             <span class="temp">{{ Math.round(storeWeather.data.current.temp) }}</span>
         </div>
-        <span class="description">{{ storeWeather.data.current.weather[0].main }}</span>
+        <span class="description">{{ storeWeather.data.current.weather[0].description }}</span>
     </section>
 </template>
 

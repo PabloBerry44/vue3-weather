@@ -14,7 +14,7 @@ footer {
     padding: 20px;
     display: flex;
     flex-flow: column;
-    color: gray;
+    color: var(--secondary-text-color);
     gap: 10px;
     text-align: center;
     font-size: 14px;

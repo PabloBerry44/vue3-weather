@@ -19,7 +19,12 @@ const computedDay = (unix: number) => {
         <div class="day" v-for="(day, index) in storeWeather.data.daily.slice(0, 7)" :key="index">
             <div class="wrapper">
                 <span class="weekDay">{{ computedDay(day.dt) }}</span>
-                <img :src="'/weatherIcons/' + day.weather[0].icon + '.webp'" alt="asd" />
+                <img
+                    width="32"
+                    height="32"
+                    :src="'/weatherIcons/' + day.weather[0].icon + '.webp'"
+                    :alt="day.weather[0].main"
+                />
             </div>
 
             <div class="temp-wrapper">

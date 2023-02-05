@@ -26,8 +26,8 @@
 body {
     --component-background: #ffffff;
     --body-background: #f3f4f5;
-    --dark-text: #000000;
-    --light-text: #d3d3d3;
+    --primary-text-color: #000000;
+    --secondary-text-color: #4e4e4e;
     --day-details-background: #f8f8f8;
     --light-accent: #afafaf;
     --input-background: #f3f4f5;
