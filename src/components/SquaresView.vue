@@ -45,7 +45,10 @@ const computedHour = (unix: number) => {
         <div class="square">
             <span class="title">Precipitation</span>
             <span class="value">{{ Math.round(storeWeather.data.daily[0].pop * 10) * 10 }}%</span>
-            <span class="descr"> Volume: {{ Math.round(storeWeather.data.daily[0].rain) }}mm </span>
+            <span v-if="storeWeather.data.daily[0].rain" class="descr">
+                Volume: {{ Math.round(storeWeather.data.daily[0].rain) }}mm
+            </span>
+            <span v-else class="descr"> Volume: N/A </span>
         </div>
         <div class="square wind">
             <div class="wind-circle">

@@ -8,7 +8,7 @@ const formInput = ref(HTMLInputElement)
 <template>
     <header>
         <LogoImage class="logo" />
-        <form @submit.prevent="$emit('search', searchValue), (searchValue = '')">
+        <form @submit.prevent="$emit('search', searchValue), (searchValue = '')" action=".">
             <input ref="formInput" type="search" v-model="searchValue" placeholder="Search for city" />
         </form>
     </header>
