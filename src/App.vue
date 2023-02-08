@@ -9,9 +9,6 @@ const storeWeather = useWeatherStore()
 const route = useRoute()
 const router = useRouter()
 
-storeWeather.getLocalValues()
-if (storeWeather.theme == 'dark') document.body.classList.add('dark')
-
 onMounted(async () => {
     await router.isReady()
     if (!route.params.city) {
@@ -40,7 +37,7 @@ function changeRoute(city: string) {
         <div class="circle"></div>
         <span>Loading data</span>
     </div>
-    <div class="wrapper" :class="{ darkMode: storeWeather.theme == 'dark' }">
+    <div class="wrapper">
         <NavigationBar @search="(value) => changeRoute(value)" />
         <router-view></router-view>
     </div>

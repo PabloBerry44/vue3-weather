@@ -50,7 +50,6 @@ interface Data {
 export const useWeatherStore = defineStore('weather', {
     state: () => {
         return {
-            theme: 'light',
             loaded: false,
             data: {
                 0: {
@@ -126,7 +125,6 @@ export const useWeatherStore = defineStore('weather', {
             const response = await fetch(`/.netlify/functions/fetchApi?city=${city}`)
             const data = await response.json()
             this.data = data
-            console.log(data)
 
             this.loaded = true
 
@@ -138,14 +136,6 @@ export const useWeatherStore = defineStore('weather', {
                 title += word + ' '
             }
             document.title = title
-        },
-        saveLocally() {
-            window.localStorage.setItem('theme', this.theme)
-        },
-        getLocalValues() {
-            if (window.localStorage.getItem('theme') == null) return
-
-            this.theme = String(window.localStorage.getItem('theme'))
         },
     },
 })

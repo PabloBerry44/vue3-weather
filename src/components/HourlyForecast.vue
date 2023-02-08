@@ -10,7 +10,7 @@ const storeWeather = useWeatherStore()
 </script>
 
 <template>
-    <section class="forecast">
+    <section class="forecast component-container">
         <div class="hour--details" v-for="(detail, index) in storeWeather.data.hourly.slice(0, 24)" :key="index">
             <span class="hour"> {{ computedHour(detail.dt) }}</span>
             <img width="32" :src="'/weatherIcons/' + detail.weather[0].icon + '.webp'" :alt="detail.weather[0].main" />
@@ -21,24 +21,18 @@ const storeWeather = useWeatherStore()
 
 <style scoped lang="scss">
 .forecast {
-    width: 100%;
-    max-width: 480px;
-    background: var(--component-background);
-    color: var(--primary-text-color);
-    border-radius: 20px;
     display: flex;
     flex-flow: row nowrap;
     gap: 30px;
     padding: 20px;
     overflow-x: scroll;
     position: relative;
-    box-shadow: 0px 0px 1.3px rgba(0, 0, 0, 0.02), 0px 0px 4.5px rgba(0, 0, 0, 0.025), 0px 0px 20px rgba(0, 0, 0, 0.04);
 
-    -ms-overflow-style: none; /* Internet Explorer 10+ */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 
     &::-webkit-scrollbar {
-        display: none; /* Safari and Chrome */
+        display: none;
     }
 
     .hour--details {

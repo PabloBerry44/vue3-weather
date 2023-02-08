@@ -5,7 +5,7 @@ const storeWeather = useWeatherStore()
 </script>
 
 <template>
-    <section class="main-content">
+    <section class="main-content component-container">
         <span class="location">{{ storeWeather.data[0].name }}, {{ storeWeather.data[0].country }} </span>
 
         <div class="container">
@@ -25,15 +25,8 @@ const storeWeather = useWeatherStore()
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 300px;
-    width: 100%;
-    max-width: 480px;
-    background: var(--component-background);
-    color: var(--primary-text-color);
     padding: 20px;
     justify-content: space-evenly;
-    border-radius: 20px;
-    box-shadow: 0px 0px 1.3px rgba(0, 0, 0, 0.02), 0px 0px 4.5px rgba(0, 0, 0, 0.025), 0px 0px 20px rgba(0, 0, 0, 0.04);
 
     .container {
         display: flex;
@@ -45,8 +38,8 @@ const storeWeather = useWeatherStore()
         height: 120px;
 
         .temp {
-            font-size: 100px;
-            font-weight: 300;
+            font-size: 80px;
+            font-weight: 200;
 
             &::after {
                 content: '°';

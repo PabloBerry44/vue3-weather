@@ -6,19 +6,16 @@ const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frida
 
 const computedDay = (unix: number) => {
     const day = new Date((unix + storeWeather.data.timezone_offset) * 1000).getDay()
-
-    const date = new Date()
-    const today = date.getDay()
-
-    return day == today ? 'Today' : weekdays[day]
+    return weekdays[day]
 }
 </script>
 
 <template>
-    <section class="forecast">
+    <section class="daily component-container">
         <div class="day" v-for="(day, index) in storeWeather.data.daily.slice(0, 7)" :key="index">
             <div class="wrapper">
-                <span class="weekDay">{{ computedDay(day.dt) }}</span>
+                <span v-if="index == 0" class="weekDay">Today</span>
+                <span v-else class="weekDay">{{ computedDay(day.dt) }}</span>
                 <img width="32" :src="'/weatherIcons/' + day.weather[0].icon + '.webp'" :alt="day.weather[0].main" />
             </div>
 
@@ -31,19 +28,13 @@ const computedDay = (unix: number) => {
 </template>
 
 <style scoped lang="scss">
-.forecast {
+.daily {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 300px;
-    width: 100%;
-    max-width: 480px;
-    background: var(--component-background);
     color: var(--primary-text-color);
     padding: 10px;
     justify-content: space-evenly;
-    border-radius: 20px;
-    box-shadow: 0px 0px 1.3px rgba(0, 0, 0, 0.02), 0px 0px 4.5px rgba(0, 0, 0, 0.025), 0px 0px 20px rgba(0, 0, 0, 0.04);
     gap: 5px;
 
     .day {
@@ -53,7 +44,6 @@ const computedDay = (unix: number) => {
         justify-content: space-between;
         background-color: var(--day-details-background);
         padding: 10px 20px;
-        // border-radius: 20px;
         width: 100%;
 
         &:first-child {

@@ -15,6 +15,8 @@ const UVdesc = () => {
             return 'Medium'
         case uvi >= 1:
             return 'Low'
+        default:
+            return 'Very low'
     }
 }
 
@@ -29,7 +31,7 @@ const computedHour = (unix: number) => {
 }
 </script>
 <template>
-    <section class="squares-grid">
+    <section class="squares-grid component-container">
         <div class="square">
             <span class="title">UV Index</span>
             <span class="value">{{ Math.round(storeWeather.data.current.uvi) }}</span>
@@ -43,19 +45,17 @@ const computedHour = (unix: number) => {
         <div class="square">
             <span class="title">Precipitation</span>
             <span class="value">{{ Math.round(storeWeather.data.daily[0].pop * 10) * 10 }}%</span>
-            <span v-if="storeWeather.data.daily[0].rain" class="descr">
-                Volume: {{ Math.round(storeWeather.data.daily[0].rain) }}mm
-            </span>
+            <span class="descr"> Volume: {{ Math.round(storeWeather.data.daily[0].rain) }}mm </span>
         </div>
         <div class="square wind">
-            <!-- <span class="title">Wind</span> -->
             <div class="wind-circle">
                 <span class="N">N</span>
                 <span class="S">S</span>
                 <span class="E">E</span>
                 <span class="W">W</span>
-                <!-- <img src="../assets/icons/straight_FILL0_wght200_GRAD0_opsz48.svg" alt="" class="arrow" /> -->
-                <div class="arrow"></div>
+                <div class="arrow">
+                    <div class="circle"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -64,9 +64,6 @@ const computedHour = (unix: number) => {
 .squares-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background-color: var(--component-background);
-    width: 100%;
-    border-radius: 20px;
     padding: 10px;
     gap: 10px;
     grid-column: 1 / -1;
@@ -140,27 +137,35 @@ const computedHour = (unix: number) => {
                 height: 70%;
                 background-color: var(--secondary-text-color);
                 border-radius: 2px;
+                position: absolute;
+                transform: translate(-50%, -50%) v-bind("'rotate('+(storeWeather.data.current.wind_deg)+'deg)'");
+                left: 50%;
+                top: 50%;
 
                 &::after,
                 &::before {
                     position: absolute;
                     content: '';
                     width: 2px;
-                    height: 20px;
+                    height: 10px;
                     bottom: 0;
-                    transform: rotate(20deg) translate(3px, -1px);
-                    background: var(--secondary-text-color);
+                    transform: rotate(20deg) translate(2px, 1px);
+                    background-color: var(--secondary-text-color);
                     border-radius: 2px;
                 }
                 &::before {
-                    transform: rotate(-20deg) translate(-3px, -1px);
+                    transform: rotate(-20deg) translate(-2px, 1px);
                 }
 
-                position: absolute;
-
-                transform: translate(-50%, -50%) v-bind("'rotate('+(storeWeather.data.current.wind_deg)+'deg)'");
-                left: 50%;
-                top: 50%;
+                .circle {
+                    width: 6px;
+                    height: 6px;
+                    background-color: var(--secondary-text-color);
+                    border-radius: 50%;
+                    position: absolute;
+                    transform: translate(-2px, -80%);
+                    top: 50%;
+                }
             }
         }
     }

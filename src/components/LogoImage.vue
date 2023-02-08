@@ -7,12 +7,13 @@
 </template>
 <style lang="scss" scoped>
 .logo {
-    display: flex;
+    display: none;
     flex-flow: row nowrap;
     align-items: center;
+    justify-content: center;
     font-size: 24px;
     color: var(--secondary-text-color);
-    grid-area: 1 / 1;
+
     .circle {
         width: 36px;
         height: 36px;

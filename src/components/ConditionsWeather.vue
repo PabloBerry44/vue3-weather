@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { useWeatherStore } from '../stores/weatherStore'
-
 const storeWeather = useWeatherStore()
 </script>
 
 <template>
-    <section class="conditions">
+    <section class="conditions component-container">
         <div class="condition">
             <div class="title--wrapper">
                 <img
@@ -64,12 +63,7 @@ const storeWeather = useWeatherStore()
     display: grid;
     grid-template-columns: 1fr;
     gap: 15px;
-    width: 100%;
-    max-width: 480px;
-    background: var(--component-background);
     padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0px 0px 1.3px rgba(0, 0, 0, 0.02), 0px 0px 4.5px rgba(0, 0, 0, 0.025), 0px 0px 20px rgba(0, 0, 0, 0.04);
 
     .condition {
         display: flex;
