@@ -84,14 +84,15 @@ export const useWeatherStore = defineStore('weather', {
         async getCityList(city: string) {
             const response = await fetch(`/.netlify/functions/getCityList?city=${city}`)
             const data = await response.json()
-            this.cityList = [
-                ...new Map(
-                    data.map((city: { country: string; lat: number; lon: number; name: string; state: string }) => [
-                        JSON.stringify([city.name, city.state, city.country]),
-                        city,
-                    ]),
-                ).values(),
-            ]
+            // this.cityList = [
+            //     ...new Map(
+            //         data.map((city: { country: string; lat: number; lon: number; name: string; state: string }) => [
+            //             JSON.stringify([city.name, city.state, city.country]),
+            //             city,
+            //         ]),
+            //     ).values(),
+            // ]
+            this.cityList = data
             this.showList = true
         },
     },

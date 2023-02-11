@@ -7,7 +7,7 @@ const storeWeather = useWeatherStore()
 const searchValue = ref('')
 const formInput = ref(HTMLInputElement)
 
-function handleClick(name: string, country: string) {
+function handleClick() {
     storeWeather.cityList = []
     searchValue.value = ''
 }
@@ -33,7 +33,7 @@ function handleClick(name: string, country: string) {
                             '.',
                             ',',
                         )}/${city.name.replace(/ /g, '-')}/${city.country.replace(/ /g, '-')}`"
-                        @click="handleClick(city.name, city.country)"
+                        @click="handleClick()"
                     >
                         {{ city.name }}, {{ city.state }} {{ city.country }}
                     </router-link>
