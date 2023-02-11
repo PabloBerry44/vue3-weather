@@ -112,7 +112,7 @@ const computedHour = (unix: number) => {
             justify-self: center;
 
             span {
-                background: var(--day-details-background);
+                background-color: var(--day-details-background);
                 position: absolute;
                 color: var(--secondary-text-color);
 
@@ -166,7 +166,7 @@ const computedHour = (unix: number) => {
                     background-color: var(--secondary-text-color);
                     border-radius: 50%;
                     position: absolute;
-                    transform: translate(-2px, -80%);
+                    transform: translate(-2px, -50%);
                     top: 50%;
                 }
             }

@@ -40,102 +40,59 @@ interface Daily {
 }
 
 interface Data {
-    0: Geo
+    geo: Geo
     current: Current
     daily: Daily[]
     hourly: Current[]
     timezone_offset: number
 }
 
+interface City {
+    country: string
+    lat: number
+    lon: number
+    name: string
+    state: string
+}
+
 export const useWeatherStore = defineStore('weather', {
     state: () => {
         return {
+            cityList: [] as City[],
+            showList: false,
             loaded: false,
-            data: {
-                0: {
-                    country: 'ES',
-                    name: 'Seville',
-                },
-                current: {
-                    dt: 1675267200,
-                    feels_like: 15,
-                    humidity: 80,
-                    pressure: 1020,
-                    sunrise: 1675586114,
-                    sunset: 1675633104,
-                    temp: 18,
-                    uvi: 3,
-                    visibility: 10000,
-                    weather: [
-                        {
-                            description: 'Cloudy',
-                            icon: '03d',
-                            main: 'Clouds',
-                        },
-                    ],
-                    wind_speed: 13,
-                    wind_deg: 50,
-                },
-                daily: [
-                    {
-                        dt: 1675368000,
-                        pop: 0,
-                        rain: 0,
-                        temp: {
-                            min: 10,
-                            max: 15,
-                        },
-                        weather: [
-                            {
-                                description: 'Cloudy',
-                                icon: '03d',
-                                main: 'Clouds',
-                            },
-                        ],
-                    },
-                ],
-                hourly: [
-                    {
-                        dt: 1675267200,
-                        feels_like: 15,
-                        humidity: 80,
-                        pressure: 1020,
-                        temp: 18,
-                        uvi: 3,
-                        visibility: 10000,
-                        weather: [
-                            {
-                                description: 'Cloudy',
-                                icon: '03d',
-                                main: 'Clouds',
-                            },
-                        ],
-                        wind_speed: 13,
-                    },
-                ],
-                timezone_offset: 0,
-            } as unknown as Data,
+            error: false,
+            geo: {} as Geo,
+            data: {} as Data,
         }
     },
     actions: {
-        async fetchData(city: string) {
+        async fetchData(lat: string, lon: string) {
             this.loaded = false
-            city = city.replace(/-/g, ' ')
+            const response = await fetch(`/.netlify/functions/fetchApi?lat=${lat}&lon=${lon}`)
 
-            const response = await fetch(`/.netlify/functions/fetchApi?city=${city}`)
-            const data = await response.json()
-            this.data = data
-
-            this.loaded = true
-
-            // change document title
-            const cityArray = city.split(' ')
-            let title = ''
-            for (let word of cityArray) {
-                word = word[0].toUpperCase() + word.slice(1)
-                title += word + ' '
+            if (response.ok) {
+                const data = await response.json()
+                this.data = data
+                this.error = false
+            } else {
+                console.log('error')
+                this.error = true
             }
-            document.title = title
+            this.loaded = true
+        },
+        async getCityList(city: string) {
+            const response = await fetch(`/.netlify/functions/getCityList?city=${city}`)
+            const data = await response.json()
+            this.cityList = [
+                ...new Map(
+                    data.map((city: { country: string; lat: number; lon: number; name: string; state: string }) => [
+                        JSON.stringify([city.name, city.state, city.country]),
+                        city,
+                    ]),
+                ).values(),
+            ]
+            this.showList = true
         },
     },
 })

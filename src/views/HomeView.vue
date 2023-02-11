@@ -10,7 +10,7 @@ const storeWeather = useWeatherStore()
 </script>
 
 <template>
-    <main v-if="storeWeather.loaded">
+    <main v-if="storeWeather.loaded && !storeWeather.error">
         <MainWeather />
         <HourlyForecast />
         <ConditionsWeather />

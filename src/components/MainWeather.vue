@@ -6,7 +6,9 @@ const storeWeather = useWeatherStore()
 
 <template>
     <section class="main-content component-container">
-        <span class="location">{{ storeWeather.data[0].name }}, {{ storeWeather.data[0].country }} </span>
+        <span v-if="storeWeather.geo.name && storeWeather.geo.country" class="location"
+            >{{ storeWeather.geo.name.replace(/-/g, ' ') }}, {{ storeWeather.geo.country }}
+        </span>
 
         <div class="container">
             <img

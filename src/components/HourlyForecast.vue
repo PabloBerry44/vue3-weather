@@ -27,6 +27,7 @@ const storeWeather = useWeatherStore()
     padding: 20px;
     overflow-x: scroll;
     position: relative;
+    z-index: -1;
 
     -ms-overflow-style: none;
     scrollbar-width: none;

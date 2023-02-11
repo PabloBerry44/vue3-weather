@@ -10,12 +10,19 @@ const route = useRoute()
 const router = useRouter()
 
 onMounted(async () => {
+    console.log('es')
     await router.isReady()
-    if (!route.params.city) {
+
+    if (!route.params.lat && !route.params.lon) {
         const response = await fetch('https://ipwho.is/')
         const data = await response.json()
 
-        changeRoute(data.city)
+        router.push(
+            `${String(data.latitude).replace('.', ',')}/${String(data.longitude).replace('.', ',')}/${data.city.replace(
+                /-/g,
+                ' ',
+            )}/${data.country_code}`,
+        )
     }
 })
 
@@ -23,12 +30,19 @@ watch(
     () => route.fullPath,
     async () => {
         await router.isReady()
-        storeWeather.fetchData(String(route.params.city))
+        storeWeather.geo.country = String(route.params.country)
+        storeWeather.geo.name = String(route.params.name)
+        document.title = 'Weather in ' + String(route.params.name).replace(/-/g, ' ')
+        storeWeather.fetchData(String(route.params.lat), String(route.params.lon))
     },
 )
 
-function changeRoute(city: string) {
-    router.push(city.replace(/ /g, '-'))
+function handleSearch(city: string) {
+    if (city) {
+        storeWeather.getCityList(city)
+    } else {
+        storeWeather.cityList = []
+    }
 }
 </script>
 
@@ -37,14 +51,17 @@ function changeRoute(city: string) {
         <div class="circle"></div>
         <span>Loading data</span>
     </div>
-    <div class="wrapper">
-        <NavigationBar @search="(value) => changeRoute(value)" />
+    <div class="wrapper" v-if="storeWeather.loaded">
+        <NavigationBar @search="(value) => handleSearch(value)" />
         <router-view></router-view>
     </div>
-
+    <div class="error" v-if="storeWeather.error">
+        <span>404</span>
+        <span>page not found :(</span>
+    </div>
     <FooterVue />
 </template>
-<style scoped>
+<style scoped lang="scss">
 .loading {
     width: 100%;
     height: 100dvh;
@@ -56,7 +73,7 @@ function changeRoute(city: string) {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 2;
+    z-index: 5;
     flex-direction: column;
     gap: 20px;
 }
@@ -79,6 +96,24 @@ function changeRoute(city: string) {
     }
     to {
         transform: rotateZ(359deg);
+    }
+}
+
+.error {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 4;
+
+    span {
+        color: var(--light-accent);
+        font-family: 'Varela Round', sans-serif;
+
+        &:first-child {
+            font-size: 70px;
+        }
     }
 }
 </style>

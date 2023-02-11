@@ -2,14 +2,13 @@ import axios from 'axios'
 require('dotenv').config()
 
 exports.handler = async function (event) {
-    const lat = event.queryStringParameters.lat
-    const lon = event.queryStringParameters.lon
+    const city = event.queryStringParameters.city
     const apiKey = process.env.API_KEY
 
+    const geoURL = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`
+
     try {
-        const { data } = await axios.get(
-            `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`,
-        )
+        const { data } = await axios.get(geoURL)
 
         return {
             statusCode: 200,
