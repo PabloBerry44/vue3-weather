@@ -67,7 +67,7 @@ function handleSearch(city: string) {
     height: 100dvh;
     background: var(--body-background);
     color: var(--secondary-text-color);
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     display: flex;
@@ -109,7 +109,6 @@ function handleSearch(city: string) {
 
     span {
         color: var(--light-accent);
-        font-family: 'Varela Round', sans-serif;
 
         &:first-child {
             font-size: 70px;
