@@ -1,8 +1,6 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;700&family=Varela+Round&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;700&display=swap');
 
 * {
-    /* font-family: 'Inter', sans-serif; */
     font-family: 'Nunito', sans-serif;
     line-height: 110%;
     background: transparent;
@@ -35,6 +33,7 @@
         --s-text: #d3d3d3;
         --light-accent: #575757;
         --input-bg: #4b4b4b;
+        --hover-bg: #5e5e5e;
     }
     img[src$=".svg"] {
         filter: invert(100%);
@@ -49,19 +48,20 @@
         --s-text: #4e4e4e;
         --light-accent: #afafaf;
         --input-bg: #f3f4f5;
+        --hover-bg: #dddddd;
     }
 }
 
 body {
-    background-color: var(--body-background);
+    background-color: var(--body-bg);
 }
 
-.component-container {
+.component {
     min-width: 300px;
     width: 100%;
     max-width: 480px;
-    background: var(--component-background);
+    background: var(--component-bg);
     border-radius: 20px;
     box-shadow: 0px 0px 1.3px rgba(0, 0, 0, 0.02), 0px 0px 4.5px rgba(0, 0, 0, 0.025), 0px 0px 20px rgba(0, 0, 0, 0.04);
-    color: var(--primary-text-color);
+    color: var(--p-text);
 }
