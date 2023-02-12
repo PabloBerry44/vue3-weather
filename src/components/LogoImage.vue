@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: center;
     font-size: 24px;
-    color: var(--secondary-text-color);
+    color: var(--s-text);
 
     .circle {
         width: 36px;

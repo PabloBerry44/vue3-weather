@@ -16,16 +16,11 @@ function handleClick() {
     <div class="wrapper">
         <header>
             <LogoImage class="logo" />
-            <form action="." @submit.prevent>
-                <input
-                    @input="$emit('search', searchValue)"
-                    ref="formInput"
-                    type="search"
-                    v-model="searchValue"
-                    placeholder="Search for city"
-                />
-                <section class="component-container list" v-if="storeWeather.cityList.length >= 1">
+            <form action="." @submit.prevent="$emit('search', searchValue), (searchValue = '')">
+                <input ref="formInput" type="search" v-model="searchValue" placeholder="Search for city" />
+                <section class="component-container list" v-if="storeWeather.cityList.length >= 1" tabindex="0">
                     <router-link
+                        tabindex="0"
                         class="city"
                         v-for="(city, index) in storeWeather.cityList"
                         :key="index"
@@ -54,9 +49,10 @@ header {
     padding: 10px;
     background: white;
     border-radius: 20px;
-    background-color: var(--component-background);
+    background-color: var(--component-bg);
     justify-items: center;
     gap: 40px;
+    box-shadow: 0px 0px 1.3px rgba(0, 0, 0, 0.02), 0px 0px 4.5px rgba(0, 0, 0, 0.025), 0px 0px 20px rgba(0, 0, 0, 0.04);
 
     :focus-within .list {
         display: flex;
@@ -87,7 +83,7 @@ header {
         width: 100%;
         border-radius: 10px;
         height: 44px;
-        background-color: var(--input-background);
+        background-color: var(--input-bg);
         position: relative;
         z-index: 3;
 
@@ -99,13 +95,13 @@ header {
 
         input {
             font-size: 18px;
-            padding: 15px;
+            padding: 15px 20px;
             border-radius: 10px;
             width: 100%;
             top: 0;
             left: 0;
             color: initial;
-            color: var(--secondary-text-color);
+            color: var(--s-text);
         }
 
         .list {
@@ -119,13 +115,17 @@ header {
             top: 68px;
             left: 0;
             display: none;
+            background-color: var(--input-bg);
+
+            &:focus {
+                display: flex;
+            }
 
             .city {
-                padding: 10px;
-                background-color: var(--day-details-background);
+                padding: 15px 10px;
                 border-radius: 20px;
                 text-decoration: none;
-                color: var(--primary-text-color);
+                color: var(--p-text);
             }
         }
     }

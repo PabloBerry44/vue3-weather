@@ -72,7 +72,7 @@ const storeWeather = useWeatherStore()
         align-items: center;
         justify-content: space-between;
         border-bottom: 1px solid var(--light-accent);
-        color: var(--primary-text-color);
+        color: var(--p-text);
 
         .title--wrapper {
             display: flex;
@@ -84,7 +84,7 @@ const storeWeather = useWeatherStore()
             }
             .title {
                 font-size: 15px;
-                color: var(--secondary-text-color);
+                color: var(--s-text);
             }
         }
     }

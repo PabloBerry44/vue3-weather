@@ -80,7 +80,7 @@ const computedHour = (unix: number) => {
     .square {
         width: 100%;
         aspect-ratio: 1 / 1;
-        background-color: var(--day-details-background);
+        background-color: var(--inner-bg);
         padding: 20px;
         border-radius: 20px;
         display: flex;
@@ -89,16 +89,16 @@ const computedHour = (unix: number) => {
 
         .title {
             font-size: 16px;
-            color: var(--secondary-text-color);
+            color: var(--s-text);
         }
 
         .value {
             font-size: 35px;
-            color: var(--primary-text-color);
+            color: var(--p-text);
         }
 
         .descr {
-            color: var(--secondary-text-color);
+            color: var(--s-text);
         }
 
         .wind-circle {
@@ -112,9 +112,9 @@ const computedHour = (unix: number) => {
             justify-self: center;
 
             span {
-                background-color: var(--day-details-background);
+                background-color: var(--inner-bg);
                 position: absolute;
-                color: var(--secondary-text-color);
+                color: var(--s-text);
 
                 &.N {
                     left: 50%;
@@ -138,7 +138,7 @@ const computedHour = (unix: number) => {
             .arrow {
                 width: 2px;
                 height: 70%;
-                background-color: var(--secondary-text-color);
+                background-color: var(--s-text);
                 border-radius: 2px;
                 position: absolute;
                 transform: translate(-50%, -50%) v-bind("'rotate('+(storeWeather.data.current.wind_deg)+'deg)'");
@@ -153,7 +153,7 @@ const computedHour = (unix: number) => {
                     height: 10px;
                     bottom: 0;
                     transform: rotate(20deg) translate(2px, 1px);
-                    background-color: var(--secondary-text-color);
+                    background-color: var(--s-text);
                     border-radius: 2px;
                 }
                 &::before {
@@ -163,7 +163,7 @@ const computedHour = (unix: number) => {
                 .circle {
                     width: 6px;
                     height: 6px;
-                    background-color: var(--secondary-text-color);
+                    background-color: var(--s-text);
                     border-radius: 50%;
                     position: absolute;
                     transform: translate(-2px, -50%);

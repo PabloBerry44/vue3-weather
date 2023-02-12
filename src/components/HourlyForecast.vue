@@ -25,9 +25,10 @@ const storeWeather = useWeatherStore()
     flex-flow: row nowrap;
     gap: 30px;
     padding: 20px;
-    overflow-x: scroll;
+    overflow: scroll;
     position: relative;
-    z-index: -1;
+    z-index: 1;
+    overflow: scroll;
 
     -ms-overflow-style: none;
     scrollbar-width: none;

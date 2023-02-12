@@ -28,13 +28,13 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --component-background: #1d1d1d;
-        --body-background: #000000;
-        --primary-text-color: #ffffff;
-        --secondary-text-color: #d3d3d3;
-        --day-details-background: #252525;
+        --component-bg: #1d1d1d;
+        --inner-bg: #252525;
+        --body-bg: #000000;
+        --p-text: #ffffff;
+        --s-text: #d3d3d3;
         --light-accent: #575757;
-        --input-background: #4b4b4b;
+        --input-bg: #4b4b4b;
     }
     img[src$=".svg"] {
         filter: invert(100%);
@@ -42,13 +42,13 @@
 }
 @media (prefers-color-scheme: light) {
     :root {
-        --component-background: #ffffff;
-        --body-background: #f3f4f5;
-        --primary-text-color: #000000;
-        --secondary-text-color: #4e4e4e;
-        --day-details-background: #f8f8f8;
+        --component-bg: #ffffff;
+        --inner-bg: #f8f8f8;
+        --body-bg: #f3f4f5;
+        --p-text: #000000;
+        --s-text: #4e4e4e;
         --light-accent: #afafaf;
-        --input-background: #f3f4f5;
+        --input-bg: #f3f4f5;
     }
 }
 

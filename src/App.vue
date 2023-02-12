@@ -65,8 +65,8 @@ function handleSearch(city: string) {
 .loading {
     width: 100%;
     height: 100dvh;
-    background: var(--body-background);
-    color: var(--secondary-text-color);
+    background: var(--body-bg);
+    color: var(--s-text);
     position: fixed;
     left: 0;
     top: 0;
@@ -82,7 +82,7 @@ function handleSearch(city: string) {
     width: 50px;
     height: 50px;
     border: 5px solid rgb(0, 89, 223);
-    border-bottom: 4px solid var(--body-background);
+    border-bottom: 5px solid var(--body-bg);
     border-radius: 50%;
     animation-name: rotate;
     animation-duration: 1s;
