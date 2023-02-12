@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { useStateStore } from '../stores/stateStore'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const mobileDevice = ref(false)
-
-window.addEventListener('resize', () => {
+function handleDeviceWidth() {
    mobileDevice.value = window.innerWidth > 500 ? false : true
+}
+onMounted(() => {
+   handleDeviceWidth()
+   window.addEventListener('resize', handleDeviceWidth)
 })
 
 const computedHour = (unix: number) => {
