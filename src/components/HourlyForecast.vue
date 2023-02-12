@@ -1,5 +1,12 @@
 <script setup lang="ts">
 import { useStateStore } from '../stores/stateStore'
+import { ref } from 'vue'
+
+const mobileDevice = ref(false)
+
+window.addEventListener('resize', () => {
+   mobileDevice.value = window.innerWidth > 500 ? false : true
+})
 
 const computedHour = (unix: number) => {
    const hour = new Date((unix + stateStore.data.timezone_offset) * 1000).getHours().toString()
@@ -10,7 +17,7 @@ const stateStore = useStateStore()
 </script>
 
 <template>
-   <section class="forecast component" v-dragscroll>
+   <section class="forecast component" v-dragscroll="!mobileDevice">
       <div class="hour--details" v-for="(detail, index) in stateStore.data.hourly.slice(0, 24)" :key="index">
          <span class="hour"> {{ computedHour(detail.dt) }}</span>
          <img width="32" :src="'/weatherIcons/' + detail.weather[0].icon + '.webp'" :alt="detail.weather[0].main" />
