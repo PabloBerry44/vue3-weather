@@ -134,8 +134,9 @@ header {
          .circle {
             width: 30px;
             height: 30px;
-            border: 3px solid rgb(0, 89, 223);
-            border-bottom: 5px solid var(--body-bg);
+            border-left: 3px solid rgb(0, 89, 223);
+            border-top: 3px solid rgb(0, 89, 223);
+            border-right: 3px solid rgb(0, 89, 223);
             border-radius: 50%;
             animation-name: rotate;
             animation-duration: 1s;
