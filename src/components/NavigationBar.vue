@@ -181,5 +181,6 @@ header {
    left: 0;
    display: none;
    backdrop-filter: blur(5px);
+   -webkit-backdrop-filter: blur(5px);
 }
 </style>
