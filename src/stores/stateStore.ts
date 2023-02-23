@@ -59,8 +59,8 @@ export const useStateStore = defineStore('state', {
    state: () => {
       return {
          cityList: [] as City[],
-         showList: false,
          loaded: false,
+         listLoaded: true,
          error: false,
          geo: {} as Geo,
          data: {} as Data,
@@ -81,11 +81,14 @@ export const useStateStore = defineStore('state', {
          this.loaded = true
       },
       async getCityList(city: string) {
+         this.cityList = []
+         this.listLoaded = false
+
          const response = await fetch(`/.netlify/functions/getCityList?city=${city}`)
          const data = await response.json()
 
          this.cityList = data
-         this.showList = true
+         this.listLoaded = true
       },
       computedURL(lat: number, lon: number, name: string, country: string) {
          const latComputed = String(lat.toFixed(2)).replace('.', ',')

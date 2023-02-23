@@ -17,7 +17,7 @@ function handleClick() {
          <LogoImage class="logo" />
          <form action="." @submit.prevent="$emit('search', searchValue), (searchValue = '')">
             <input type="search" v-model="searchValue" placeholder="Search for city" />
-            <section class="component list" v-if="storeState.cityList.length >= 1">
+            <section class="component list">
                <router-link
                   tabindex="0"
                   class="city"
@@ -27,6 +27,8 @@ function handleClick() {
                   @click="handleClick()">
                   {{ city.name }}, {{ city.state }} {{ city.country }}
                </router-link>
+               <span v-if="storeState.cityList.length == 0 && storeState.listLoaded">No results</span>
+               <div class="circle" v-if="!storeState.listLoaded"></div>
             </section>
          </form>
       </header>
@@ -35,6 +37,16 @@ function handleClick() {
 </template>
 
 <style scoped lang="scss">
+.wrapper {
+   isolation: isolate;
+   z-index: 2;
+   position: sticky;
+   width: 100%;
+   max-width: 1000px;
+   inset: 0;
+   margin-inline: auto;
+   top: 10px;
+}
 .wrapper:focus-within .overlay {
    display: block;
 }
@@ -42,13 +54,14 @@ function handleClick() {
 header {
    display: grid;
    width: 100%;
-   padding: 10px;
-   background: white;
    border-radius: 20px;
    background-color: var(--component-bg);
    justify-items: center;
    gap: 40px;
    box-shadow: 0px 0px 1.3px rgba(0, 0, 0, 0.02), 0px 0px 4.5px rgba(0, 0, 0, 0.025), 0px 0px 20px rgba(0, 0, 0, 0.04);
+   position: relative;
+   z-index: 5;
+   padding: 10px;
 
    :focus-within .list {
       display: flex;
@@ -81,7 +94,6 @@ header {
       height: 44px;
       background-color: var(--input-bg);
       position: relative;
-      z-index: 3;
 
       &:focus-within {
          box-shadow: 0 0 0 2px #1b66c9; //
@@ -101,17 +113,46 @@ header {
       }
 
       .list {
-         z-index: 3;
          position: absolute;
-         width: calc(100%);
+         width: calc(100% + 20px);
          padding: 10px;
          display: flex;
          gap: 10px;
          flex-direction: column;
          top: 68px;
-         left: 0;
+         left: -10px;
          display: none;
          background-color: var(--input-bg);
+
+         span {
+            font-size: 20px;
+            padding: 10px;
+            text-align: center;
+            color: var(--s-text);
+         }
+
+         .circle {
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgb(0, 89, 223);
+            border-bottom: 5px solid var(--body-bg);
+            border-radius: 50%;
+            animation-name: rotate;
+            animation-duration: 1s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            margin-inline: auto;
+            padding: 10px;
+         }
+
+         @keyframes rotate {
+            from {
+               transform: rotateZ(0deg);
+            }
+            to {
+               transform: rotateZ(359deg);
+            }
+         }
 
          &:focus {
             display: flex;
@@ -138,7 +179,6 @@ header {
    position: fixed;
    top: 0;
    left: 0;
-   z-index: 2;
    display: none;
    backdrop-filter: blur(5px);
 }
