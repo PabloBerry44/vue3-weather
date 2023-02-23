@@ -137,6 +137,7 @@ header {
             border-left: 3px solid rgb(0, 89, 223);
             border-top: 3px solid rgb(0, 89, 223);
             border-right: 3px solid rgb(0, 89, 223);
+            border-bottom: 3px solid transparent;
             border-radius: 50%;
             animation-name: rotate;
             animation-duration: 1s;
