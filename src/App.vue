@@ -33,8 +33,6 @@ watch(
 function handleSearch(city: string) {
    if (city) {
       storeState.getCityList(city)
-   } else {
-      storeState.cityList = []
    }
 }
 </script>
